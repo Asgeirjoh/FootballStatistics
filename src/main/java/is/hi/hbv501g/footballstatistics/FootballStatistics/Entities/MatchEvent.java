@@ -8,6 +8,7 @@ public class MatchEvent {
 
     @Id
     private String id;
+    private int match_id;
     private int minute;
     private int second;
     private String type;
@@ -24,10 +25,11 @@ public class MatchEvent {
     public MatchEvent() {
     }
 
-    public MatchEvent(String id, int minute, int second, String type,
-                      String team, String player, String position, String shot_type,
-                      String outcome, boolean penalty, String card, String replacement) {
+    public MatchEvent(String id, int match_id, int minute, int second, String type, String team,
+                      String player, String position, String shot_type, String outcome, boolean penalty,
+                      String card, String replacement) {
         this.id = id;
+        this.match_id = match_id;
         this.minute = minute;
         this.second = second;
         this.type = type;
@@ -47,6 +49,14 @@ public class MatchEvent {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public void setMatch_id(int match_id) {
+        this.match_id = match_id;
     }
 
     public int getMinute() {
