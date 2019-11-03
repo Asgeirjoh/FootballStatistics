@@ -2,6 +2,7 @@
 
 ## Search Controller má finna í þessu path:
 FootballStatistics/src/main/java/is/hi/hbv501g/footballstatistics/FootballStatistics/
+https://github.com/Asgeirjoh/FootballStatistics/tree/master/src/main/java/is/hi/hbv501g/footballstatistics/FootballStatistics
 
 ## Entities má finna í þessu path:
 FootballStatistics/src/main/java/is/hi/hbv501g/footballstatistics/FootballStatistics/Entities/
