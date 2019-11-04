@@ -1,5 +1,5 @@
 # FootballStatistics
-Þið getið skoðað kóðan með því að opna skrárnar hérna, eða importað Clone linkin í IntelliJ
+Þið getið skoðað kóðan með því að opna skrárnar hérna, eða importað Clone linkin í IntelliJ. Það vantar database
 
 ## Search Controller má finna í þessu path:
 FootballStatistics/src/main/java/is/hi/hbv501g/footballstatistics/FootballStatistics/
