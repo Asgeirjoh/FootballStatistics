@@ -11,9 +11,11 @@ public class Player {
     private String player_name;
     private int player_jersey;
 
+    // Empty constructor
     public Player() {
     }
 
+    // Constructor
     public Player(int player_id, String player_name, int player_jersey) {
         this.player_id = player_id;
         this.player_name = player_name;

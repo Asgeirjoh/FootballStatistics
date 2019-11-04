@@ -12,8 +12,10 @@ import java.util.Optional;
 @Service
 public class MatchEventServiceImplementation implements MatchEventService {
 
+    // Instance Variables
     MatchEventRepository repository;
 
+    // Dependency Injection
     @Autowired
     public MatchEventServiceImplementation(MatchEventRepository repository) {
         this.repository = repository;

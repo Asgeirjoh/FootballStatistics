@@ -12,8 +12,10 @@ import java.util.Optional;
 @Service
 public class CompetitionServiceImplementation implements CompetitionService {
 
+    // Instance Variables
     CompetitionRepository repository;
 
+    // Dependency Injection
     @Autowired
     public CompetitionServiceImplementation(CompetitionRepository repository) {
         this.repository = repository;

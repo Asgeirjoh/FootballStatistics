@@ -9,14 +9,15 @@ public class Team {
 
     @Id
     private int team_id;
-
     private String team_name;
     private String team_gender;
     private ArrayList<Player> team_players;
 
+    // Empty constructor
     public Team() {
     }
 
+    // Constructor
     public Team(int team_id, String team_name, String team_gender, ArrayList<Player> team_players) {
         this.team_id = team_id;
         this.team_name = team_name;

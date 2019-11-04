@@ -22,9 +22,11 @@ public class MatchEvent {
     private String card;
     private String replacement;
 
+    // Empty constructor
     public MatchEvent() {
     }
 
+    // Constructor
     public MatchEvent(String id, int match_id, int minute, int second, String type, String team,
                       String player, String position, String shot_type, String outcome, boolean penalty,
                       String card, String replacement) {

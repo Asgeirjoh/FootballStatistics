@@ -1,6 +1,6 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics;
 
-import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.MatchService;
+import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SearchController {
 
+    // Instance Variables
+    private CompetitionService competitionService;
+    private MatchEventService matchEventService;
     private MatchService matchService;
-    // connect MatchService
+    private PlayerService playerService;
+    private SeasonService seasonService;
+    private TeamService teamService;
+
+    // Dependency Injection
     @Autowired
-    public SearchController(MatchService matchService) {
+    public SearchController(CompetitionService competitionService, MatchEventService matchEventService, MatchService matchService, PlayerService playerService, SeasonService seasonService, TeamService teamService) {
+        this.competitionService = competitionService;
+        this.matchEventService = matchEventService;
         this.matchService = matchService;
+        this.playerService = playerService;
+        this.seasonService = seasonService;
+        this.teamService = teamService;
     }
 
     @RequestMapping("/")

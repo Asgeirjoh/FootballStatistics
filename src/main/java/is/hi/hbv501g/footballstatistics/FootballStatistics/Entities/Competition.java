@@ -6,15 +6,17 @@ import javax.persistence.Id;
 @Entity
 public class Competition {
 
+    // Declare that this attribute is the id
     @Id
     private int competition_id;
-
     private String competition_name;
     private String country_name;
 
+    // Empty constructor
     public Competition() {
     }
 
+    // Constructor
     public Competition(int competition_id, String competition_name, String country_name) {
         this.competition_id = competition_id;
         this.competition_name = competition_name;

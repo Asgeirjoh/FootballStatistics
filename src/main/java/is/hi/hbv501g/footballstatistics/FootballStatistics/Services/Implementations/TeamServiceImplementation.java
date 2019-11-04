@@ -15,7 +15,7 @@ public class TeamServiceImplementation implements TeamService {
     // Instance Variable
     TeamRepository repository;
 
-    //
+    // Dependency Injection
     @Autowired
     public TeamServiceImplementation(TeamRepository repository) {
         this.repository = repository;

@@ -8,12 +8,13 @@ public class Season {
 
     @Id
     private int season_id;
-
     private String season_name;
 
+    // Empty constructor
     public Season() {
     }
 
+    // Constructor
     public Season(int season_id, String season_name) {
         this.season_id = season_id;
         this.season_name = season_name;

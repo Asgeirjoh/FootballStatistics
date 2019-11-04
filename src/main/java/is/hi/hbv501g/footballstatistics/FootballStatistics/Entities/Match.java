@@ -3,15 +3,16 @@ package is.hi.hbv501g.footballstatistics.FootballStatistics.Entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
+@Table(name = "matches")
 public class Match {
 
     @Id
     private int match_id;
-
     private Date match_date;
     @ManyToOne
     private Competition competition;
@@ -24,9 +25,11 @@ public class Match {
     // maybe not necessary
     //private ArrayList<MatchEvent> events;
 
+    // Empty constructor
     public Match() {
     }
 
+    // Constructor
     public Match(int match_id, Date match_date, Competition competition,
                  Season season, Team home_team, Team away_team, int home_score, int away_score) {
         this.match_id = match_id;
