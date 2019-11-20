@@ -29,7 +29,7 @@ https://github.com/Asgeirjoh/FootballStatistics/tree/master/src/main/java/is/hi/
 ## Step 2: Create your database
   - Opnið SQL Shell(psql), searchið í windows search eða farið í postgres möppuna.
 
-  -Server [localhost]: ýtið á enter með tómt
+  -Server [localhost]: ýtið á enter með tómt //
   -Database [postgres]: ýtið á enter með tómt
   -Port [5432]: ýtið á enter með tómt
   -Username [postgres]: skrifið inn usernamið sem þið völduð í Step 1
