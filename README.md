@@ -16,7 +16,7 @@
   -Username [postgres]: skrifið inn usernamið sem þið völduð í Step 1 <br />
   -Password for user postgres: skrifið in passwordið sem þið völduð í Step 2 <br />
 
-  - Skrifið in commandið CREATE DATABASE fsdb;
+  - Skrifið in commandið CREATE DATABASE fsdb;<br />
     Nú á að vera til database sem heitir fsdb.
 
 ### Step 3: application.properties
