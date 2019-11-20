@@ -7,7 +7,9 @@ import java.util.Optional;
 
 public interface TeamService {
     List<Team> findAll();
+    /*
     List<Team> findByTeam_Name(String team_name);
     List<Team> findByTeam_Gender(String team_gender);
     Optional<Team> findByTeam_Id(int team_id);
+     */
 }

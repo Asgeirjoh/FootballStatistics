@@ -1,24 +1,27 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
-@Table(name = "matches")
+//@Table(name = "matches")
 public class Match {
 
     @Id
     private int match_id;
     private Date match_date;
     @ManyToOne
+    @JoinColumn(name = "competition_id")
     private Competition competition;
     @ManyToOne
+    @JoinColumn(name = "season_id")
     private Season season;
+    @ManyToOne
+    @JoinColumn(name = "home_team_id")
     private Team home_team;
+    @ManyToOne
+    @JoinColumn(name = "away_team_id")
     private Team away_team;
     private int home_score;
     private int away_score;
@@ -29,9 +32,7 @@ public class Match {
     public Match() {
     }
 
-    // Constructor
-    public Match(int match_id, Date match_date, Competition competition,
-                 Season season, Team home_team, Team away_team, int home_score, int away_score) {
+    public Match(int match_id, Date match_date, Competition competition, Season season, Team home_team, Team away_team, int home_score, int away_score) {
         this.match_id = match_id;
         this.match_date = match_date;
         this.competition = competition;

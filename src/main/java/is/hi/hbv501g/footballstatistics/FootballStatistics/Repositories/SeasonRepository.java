@@ -15,6 +15,8 @@ import java.util.Optional;
 public interface SeasonRepository extends JpaRepository<Season, Integer> {
 
     List<Season> findAll();
+    /*
     List<Season> findBySeason_name(String season_name);
     Optional<Season> findById(int season_id);
+     */
 }

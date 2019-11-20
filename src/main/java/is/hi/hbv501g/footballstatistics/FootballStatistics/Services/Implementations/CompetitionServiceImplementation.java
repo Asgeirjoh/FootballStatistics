@@ -27,15 +27,18 @@ public class CompetitionServiceImplementation implements CompetitionService {
         return repository.findAll();
     }
 
+    /*
     @Override
     public List<Competition> findByCompetition_Name(String competition_name) {
         return repository.findByCompetition_Name(competition_name);
     }
 
+
     @Override
     public List<Competition> findByCountry_Name(String country_name) {
         return repository.findByCountry_Name(country_name);
     }
+     */
 
     @Override
     public Optional<Competition> findById(int competition_id) {

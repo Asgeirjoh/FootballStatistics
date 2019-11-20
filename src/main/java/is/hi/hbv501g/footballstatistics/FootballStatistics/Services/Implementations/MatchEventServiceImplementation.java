@@ -27,6 +27,7 @@ public class MatchEventServiceImplementation implements MatchEventService {
         return repository.findAll();
     }
 
+    /*
     @Override
     public List<MatchEvent> findByMatch_Id(int match_id) {
         return repository.findByMatch_Id(match_id);
@@ -81,7 +82,7 @@ public class MatchEventServiceImplementation implements MatchEventService {
     public List<MatchEvent> findByReplacement(String replacement) {
         return repository.findByReplacement(replacement);
     }
-
+     */
     @Override
     public Optional<MatchEvent> findById(String id) {
         return repository.findById(id);

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SearchController {
 
+
     // Instance Variables
     private CompetitionService competitionService;
     private MatchEventService matchEventService;
@@ -30,11 +31,15 @@ public class SearchController {
     }
 
     @RequestMapping("/")
-    public String homePage(@PathVariable("num") Integer num, Model model) {
+    public String homePage() {
+        return "homePage";
+    }
+    /*public String homePage(@PathVariable("num") Integer num, Model model) {
         // return list of recent match objects
         model.addAttribute("matches", matchService.findRecentMatches(num));
         return "homePage";
     }
+     */
 
     @RequestMapping("/match")
     public String matchPage() {

@@ -38,6 +38,7 @@ public class MatchServiceImplementation implements MatchService {
         return repository.findAll();
     }
 
+    /*
     @Override
     public List<Match> findByCompetition(String competition) {
         return repository.findByCompetition(competition);
@@ -62,4 +63,5 @@ public class MatchServiceImplementation implements MatchService {
     public Optional<Match> findByMatch_Id(int match_id) {
         return repository.findByMatch_Id(match_id);
     }
+     */
 }

@@ -26,6 +26,7 @@ public class SeasonServiceImplementation implements SeasonService {
         return repository.findAll();
     }
 
+    /*
     @Override
     public List<Season> findBySeason_name(String season_name) {
         return repository.findBySeason_name(season_name);
@@ -35,4 +36,5 @@ public class SeasonServiceImplementation implements SeasonService {
     public Optional<Season> findById(int season_id) {
         return repository.findById(season_id);
     }
+     */
 }

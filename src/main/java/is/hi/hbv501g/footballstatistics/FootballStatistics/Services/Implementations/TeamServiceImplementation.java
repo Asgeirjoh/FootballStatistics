@@ -27,6 +27,7 @@ public class TeamServiceImplementation implements TeamService {
         return repository.findAll();
     }
 
+    /*
     @Override
     public List<Team> findByTeam_Name(String team_name) {
         return repository.findByTeam_Name(team_name);
@@ -41,4 +42,5 @@ public class TeamServiceImplementation implements TeamService {
     public Optional<Team> findByTeam_Id(int team_id) {
         return repository.findByTeam_Id(team_id);
     }
+     */
 }

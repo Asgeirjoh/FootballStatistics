@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface SeasonService {
     List<Season> findAll();
+    /*
     List<Season> findBySeason_name(String season_name);
     Optional<Season> findById(int season_id);
+     */
 }
