@@ -10,17 +10,17 @@ public class Competition {
     @Id
     private int competition_id;
     private String competition_name;
-    private String country_name;
+    private String competition_country_name;
 
     // Empty constructor
     public Competition() {
     }
 
     // Constructor
-    public Competition(int competition_id, String competition_name, String country_name) {
+    public Competition(int competition_id, String competition_name, String competition_country_name) {
         this.competition_id = competition_id;
         this.competition_name = competition_name;
-        this.country_name = country_name;
+        this.competition_country_name = competition_country_name;
     }
 
     public int getCompetition_id() {
@@ -39,11 +39,11 @@ public class Competition {
         this.competition_name = competition_name;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public String getCompetition_country_name() {
+        return competition_country_name;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setCompetition_country_name(String competition_country_name) {
+        this.competition_country_name = competition_country_name;
     }
 }

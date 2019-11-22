@@ -35,8 +35,8 @@ public class CompetitionServiceImplementation implements CompetitionService {
 
 
     @Override
-    public List<Competition> findByCountry_Name(String country_name) {
-        return repository.findByCountry_Name(country_name);
+    public List<Competition> findByCountry_Name(String competition_country_name) {
+        return repository.findByCountry_Name(competition_country_name);
     }
      */
 

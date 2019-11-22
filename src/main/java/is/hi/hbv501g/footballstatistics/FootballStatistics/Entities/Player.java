@@ -2,6 +2,8 @@ package is.hi.hbv501g.footballstatistics.FootballStatistics.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Player {
@@ -9,19 +11,25 @@ public class Player {
     @Id
     private int player_id;
     private String player_name;
-    private int player_jersey;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+    private int jersey_number;
 
     // Empty constructor
     public Player() {
     }
 
     // Constructor
-    public Player(int player_id, String player_name, int player_jersey) {
+    public Player(int player_id, String player_name, Team team, int jersey_number) {
         this.player_id = player_id;
         this.player_name = player_name;
-        this.player_jersey = player_jersey;
+        this.team = team;
+        this.jersey_number = jersey_number;
     }
 
+
+    // Getters and Setters
     public int getPlayer_id() {
         return player_id;
     }
@@ -38,11 +46,19 @@ public class Player {
         this.player_name = player_name;
     }
 
-    public int getPlayer_jersey() {
-        return player_jersey;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setPlayer_jersey(int player_jersey) {
-        this.player_jersey = player_jersey;
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public int getJersey_number() {
+        return jersey_number;
+    }
+
+    public void setJersey_number(int jersey_number) {
+        this.jersey_number = jersey_number;
     }
 }

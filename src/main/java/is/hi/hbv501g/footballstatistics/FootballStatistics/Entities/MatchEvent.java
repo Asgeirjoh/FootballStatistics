@@ -12,39 +12,38 @@ public class MatchEvent {
     private int minute;
     private int second;
     private String type;
-    private String team;
-    private String player;
-    private String position;
+    private String team_name;
+    private String player_name;
+    private String position_name;
     // shot_type = type
     private String shot_type;
-    private String outcome;
-    private boolean penalty;
-    private String card;
-    private String replacement;
+    private String shot_outcome;
+    private String foul_committed_card;
+    private String foul_committed_type;
+    private String sub_replacement;
 
     // Empty constructor
     public MatchEvent() {
     }
 
     // Constructor
-    public MatchEvent(String id, int match_id, int minute, int second, String type, String team,
-                      String player, String position, String shot_type, String outcome, boolean penalty,
-                      String card, String replacement) {
+    public MatchEvent(String id, int match_id, int minute, int second, String type, String team_name, String player_name, String position_name, String shot_type, String shot_outcome, String foul_committed_card, String foul_committed_type, String sub_replacement) {
         this.id = id;
         this.match_id = match_id;
         this.minute = minute;
         this.second = second;
         this.type = type;
-        this.team = team;
-        this.player = player;
-        this.position = position;
+        this.team_name = team_name;
+        this.player_name = player_name;
+        this.position_name = position_name;
         this.shot_type = shot_type;
-        this.outcome = outcome;
-        this.penalty = penalty;
-        this.card = card;
-        this.replacement = replacement;
+        this.shot_outcome = shot_outcome;
+        this.foul_committed_card = foul_committed_card;
+        this.foul_committed_type = foul_committed_type;
+        this.sub_replacement = sub_replacement;
     }
 
+    // Getters and Setters
     public String getId() {
         return id;
     }
@@ -85,28 +84,28 @@ public class MatchEvent {
         this.type = type;
     }
 
-    public String getTeam() {
-        return team;
+    public String getTeam_name() {
+        return team_name;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setTeam_name(String team_name) {
+        this.team_name = team_name;
     }
 
-    public String getPlayer() {
-        return player;
+    public String getPlayer_name() {
+        return player_name;
     }
 
-    public void setPlayer(String player) {
-        this.player = player;
+    public void setPlayer_name(String player_name) {
+        this.player_name = player_name;
     }
 
-    public String getPosition() {
-        return position;
+    public String getPosition_name() {
+        return position_name;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPosition_name(String position_name) {
+        this.position_name = position_name;
     }
 
     public String getShot_type() {
@@ -117,35 +116,35 @@ public class MatchEvent {
         this.shot_type = shot_type;
     }
 
-    public String getOutcome() {
-        return outcome;
+    public String getShot_outcome() {
+        return shot_outcome;
     }
 
-    public void setOutcome(String outcome) {
-        this.outcome = outcome;
+    public void setShot_outcome(String shot_outcome) {
+        this.shot_outcome = shot_outcome;
     }
 
-    public boolean isPenalty() {
-        return penalty;
+    public String getFoul_committed_card() {
+        return foul_committed_card;
     }
 
-    public void setPenalty(boolean penalty) {
-        this.penalty = penalty;
+    public void setFoul_committed_card(String foul_committed_card) {
+        this.foul_committed_card = foul_committed_card;
     }
 
-    public String getCard() {
-        return card;
+    public String getFoul_committed_type() {
+        return foul_committed_type;
     }
 
-    public void setCard(String card) {
-        this.card = card;
+    public void setFoul_committed_type(String foul_committed_type) {
+        this.foul_committed_type = foul_committed_type;
     }
 
-    public String getReplacement() {
-        return replacement;
+    public String getSub_replacement() {
+        return sub_replacement;
     }
 
-    public void setReplacement(String replacement) {
-        this.replacement = replacement;
+    public void setSub_replacement(String sub_replacement) {
+        this.sub_replacement = sub_replacement;
     }
 }

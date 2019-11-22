@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface CompetitionService {
     List<Competition> findAll();
     // List<Competition> findByCompetition_Name(String competition_name);
-    // List<Competition> findByCountry_Name(String country_name);
+    // List<Competition> findByCountry_Name(String competition_country_name);
     Optional<Competition> findById(int competition_id);
 }

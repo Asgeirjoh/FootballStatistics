@@ -11,18 +11,18 @@ public class Team {
     private int team_id;
     private String team_name;
     private String team_gender;
-    private ArrayList<Player> team_players;
+    private String team_country;
 
     // Empty constructor
     public Team() {
     }
 
     // Constructor
-    public Team(int team_id, String team_name, String team_gender, ArrayList<Player> team_players) {
+    public Team(int team_id, String team_name, String team_gender, String team_country) {
         this.team_id = team_id;
         this.team_name = team_name;
         this.team_gender = team_gender;
-        this.team_players = team_players;
+        this.team_country = team_country;
     }
 
     public int getTeam_id() {
@@ -49,11 +49,11 @@ public class Team {
         this.team_gender = team_gender;
     }
 
-    public ArrayList<Player> getTeam_players() {
-        return team_players;
+    public String getTeam_country() {
+        return team_country;
     }
 
-    public void setTeam_players(ArrayList<Player> team_players) {
-        this.team_players = team_players;
+    public void setTeam_country(String team_country) {
+        this.team_country = team_country;
     }
 }
