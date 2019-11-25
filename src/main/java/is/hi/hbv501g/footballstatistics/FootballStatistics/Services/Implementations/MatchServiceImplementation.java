@@ -38,6 +38,11 @@ public class MatchServiceImplementation implements MatchService {
         return repository.findAll();
     }
 
+    @Override
+    public List<Match> findRecentMatches() {
+        return repository.findRecentMatches();
+    }
+
     /*
     @Override
     public List<Match> findByCompetition(String competition) {
@@ -47,11 +52,6 @@ public class MatchServiceImplementation implements MatchService {
     @Override
     public List<Match> findByDate(Date dateFrom, Date dateTo) {
         return repository.findByDate(dateFrom, dateTo);
-    }
-
-    @Override
-    public List<Match> findRecentMatches(int num) {
-        return repository.findRecentMatches(num);
     }
 
     @Override

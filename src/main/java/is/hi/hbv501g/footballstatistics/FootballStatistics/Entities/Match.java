@@ -1,6 +1,8 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics.Entities;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -249,5 +251,29 @@ public class Match {
 
     public void setAway_team_managers_country_name(String away_team_managers_country_name) {
         this.away_team_managers_country_name = away_team_managers_country_name;
+    }
+
+    //Returns Date as String in the format: Jan 01, 2019 00:00
+    public String getDateString(){
+        DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy hh:mm");
+        String strDate = dateFormat.format(match_date);
+        return strDate;
+    }
+
+    //Returns String of hex color green, red or yellow if the input team (0 for home and 1 for away team) won, lost or tied
+    public String getColor(int team) {
+        int thisTeamScore;
+        int oppositeTeamScore;
+        if (team == 0) {
+            thisTeamScore = home_score;
+            oppositeTeamScore = away_score;
+        }
+        else {
+            thisTeamScore = away_score;
+            oppositeTeamScore = home_score;
+        }
+        if (thisTeamScore > oppositeTeamScore) return "#eeffed";
+        else if (thisTeamScore < oppositeTeamScore) return "#ffeded";
+        else return "#fffeed";
     }
 }

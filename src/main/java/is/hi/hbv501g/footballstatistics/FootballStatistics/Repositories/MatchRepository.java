@@ -21,10 +21,14 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     Match save(Match match);
     void delete(Match match);
     List<Match> findAll();
+    // finds recent matches
+    @Query(value = "SELECT * FROM match m WHERE m.match_date = (SELECT MAX(p.match_date) FROM match p)", nativeQuery = true)
+    List<Match> findRecentMatches();
     /*
     List<Match> findByCompetition(String competition);
     List<Match> findByDate(Date dateFrom, Date dateTo);
     // finds num recent matches
+    // SELECT * FROM match WHERE match_date = (SELECT MAX(match_date) FROM match);
     List<Match> findRecentMatches(int num);
     // finds matches where team is home_team or away_team in Matches
     List<Match> findByTeam(Team team);
