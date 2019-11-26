@@ -1,5 +1,26 @@
 # FootballStatistics
 
+## TODO
+- Favourites button
+- Favourites page
+- user signup and login
+- user favourites
+- fix matchPage lineups
+- matchPage timeline
+- playerPage show player info
+- teamPage show players
+
+
+
+
+
+
+
+
+
+
+
+
 ## Set up Database
 
 ### Step 1: Install PostgreSQL
