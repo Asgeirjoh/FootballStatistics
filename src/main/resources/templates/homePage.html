@@ -92,15 +92,16 @@
                             <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
                             -->
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
-                            <td th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"></td>
+                            <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
                             <!--
                             <td>
                             <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
                             </td>
                             -->
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
-                            <td th:text="${match.away_team.team_name}" align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"></td>
+                            <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
+                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
                             <!--
                             <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
                             -->
@@ -292,7 +293,7 @@
       border: 1px solid #666;
       transition: background-color 500ms ease, color 500ms ease;}
 
-    .searchButton input:hover {
+    .searchButton input:hover, .matchButton:hover {
       background-color: #404040;
       border: 1px solid #ccc; }
 
@@ -302,6 +303,33 @@
       border: 1px solid #555;
       border-radius: 5px;
       transition: background-color 500ms ease, color 500ms ease; }
+
+    .matchButton {
+      color: #fff;
+      background-color: #666;
+      border: 1px solid #666;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 0.7em;
+      padding: 20px 10px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    .teamButton {
+      color: #000;
+      border-radius: 5px;
+      white-space: nowrap;
+      padding: 15px 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    .teamButton:hover {
+      background-color: #666;
+      color: #fff; }
+
 
     .leagueButton:hover {
       background-color: #404040;
