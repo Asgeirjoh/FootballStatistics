@@ -16,5 +16,5 @@ public interface CompetitionRepository extends JpaRepository<Competition, Intege
     List<Competition> findAll();
     // List<Competition> findByCompetition_Name(String competition_name);
     // List<Competition> findByCountry_Name(String competition_country_name);
-    Optional<Competition> findById(int competition_id);
+    Optional<Competition> findById(int id);
 }

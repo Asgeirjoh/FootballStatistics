@@ -33,7 +33,15 @@ public class SearchController {
     @RequestMapping("/")
     public String homePage(Model model) {
         model.addAttribute("recentMatches", matchService.findRecentMatches());
+        //model.addAttribute("allCompetitions", competitionService.findAll());
         return "homePage";
+    }
+
+    @RequestMapping("/competition/{id}")
+    public String competitionPage(@PathVariable int id, Model model) {
+        model.addAttribute("oneCompetition", competitionService.findById(id));
+        model.addAttribute("competitionMatches", matchService.findByCompetitionId(id));
+        return "competitionPage";
     }
 
     @RequestMapping("/match")
@@ -46,8 +54,9 @@ public class SearchController {
         return "playerPage";
     }
 
-    @RequestMapping("/team")
-    public String teamPage() {
+    @RequestMapping("/team/{id}")
+    public String teamPage(@PathVariable int id, Model model) {
+        model.addAttribute("oneTeam", teamService.findByTeamId(id));
         return "teamPage";
     }
 }

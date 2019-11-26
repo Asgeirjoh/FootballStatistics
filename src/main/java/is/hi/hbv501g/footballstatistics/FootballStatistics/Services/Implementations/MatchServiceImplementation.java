@@ -43,12 +43,13 @@ public class MatchServiceImplementation implements MatchService {
         return repository.findRecentMatches();
     }
 
-    /*
+
     @Override
-    public List<Match> findByCompetition(String competition) {
-        return repository.findByCompetition(competition);
+    public List<Match> findByCompetitionId(int competition_id) {
+        return repository.findByCompetitionId(competition_id);
     }
 
+    /*
     @Override
     public List<Match> findByDate(Date dateFrom, Date dateTo) {
         return repository.findByDate(dateFrom, dateTo);

@@ -41,7 +41,7 @@ public class CompetitionServiceImplementation implements CompetitionService {
      */
 
     @Override
-    public Optional<Competition> findById(int competition_id) {
-        return repository.findById(competition_id);
+    public Optional<Competition> findById(int id) {
+        return repository.findById(id);
     }
 }

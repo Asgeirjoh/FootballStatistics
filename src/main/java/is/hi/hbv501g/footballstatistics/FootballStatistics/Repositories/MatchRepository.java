@@ -24,8 +24,9 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     // finds recent matches
     @Query(value = "SELECT * FROM match m WHERE m.match_date = (SELECT MAX(p.match_date) FROM match p)", nativeQuery = true)
     List<Match> findRecentMatches();
+    @Query(value = "SELECT * FROM match m WHERE m.competition_id = ?1", nativeQuery = true)
+    List<Match> findByCompetitionId(int competition_id);
     /*
-    List<Match> findByCompetition(String competition);
     List<Match> findByDate(Date dateFrom, Date dateTo);
     // finds num recent matches
     // SELECT * FROM match WHERE match_date = (SELECT MAX(match_date) FROM match);

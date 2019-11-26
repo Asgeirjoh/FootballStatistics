@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Footballstatistics | Main Page</title>
+    <title>Footballstatistics | Competition Page</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> <!--Fæ ekki þennan link til þess að virka á localhost. CSS er í staðinn skrifað í þessu skjali fyrir neðan.-->
 </head>
@@ -30,86 +30,40 @@
 <section id="showcase">
     <div class="container">
         <div class="title">
-            <h1>Football Statistics</h1>
+            <h1>Competition</h1>
         </div>
     </div>
 </section>
 <main>
-    <section id="search">
-        <div class="container row">
-            <div class="searchBlock">
-                <h3>Search for matches</h3>
-                <div class="search">
-                    <form action="/action_page.php" class="searchForm">
-                        <div>
-                            <label for="startDate">Start Date:</label>
-                            <input type="date" id="startDate">
-                        </div>
-                        <div>
-                            <label for="endDate">End Date:</label>
-                            <input type="date" id="endDate">
-                        </div>
-                        <div>
-                            <label for="textBar">Team or Player:</label>
-                            <input type="text" id="textBar">
-                        </div>
-                        <div class="searchButton">
-                            <input type="submit" value="Search">
-                        </div>
-                    </form>
-                </div>
+<section id="matches">
+    <div class="container row">
+        <div th:switch="${competitionMatches}" class="matchList">
+            <h2 th:case="null">No matches yet!</h2>
+            <div th:case="*">
+                <table id="table1">
+                    <thead>
+                    <tr>
+                        <th>Home Score</th>
+                        <th>Home Team</th>
+                        <th>Date</th>
+                        <th>Away Team</th>
+                        <th>Away Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="match : ${competitionMatches}">
+                        <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
+                        <td th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"></td>
+                        <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
+                        <td th:text="${match.away_team.team_name}" align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"></td>
+                        <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
-
-    <!-- TODO: Click on teams to view Team page -->
-
-        <section id="matches">
-            <div class="container row">
-                <div th:switch="${recentMatches}" class="matchList">
-                    <h2 th:case="null">No matches yet!</h2>
-                    <div th:case="*">
-                        <table id="table1">
-                            <thead>
-                            <tr>
-                                <!--
-                                <th>View Home Team</th>
-                                -->
-                            <th>Home Score</th>
-                            <th>Home Team</th>
-                            <th>Date</th>
-                            <th>Away Team</th>
-                            <th>Away Score</th>
-                            <!--
-                            <th>View Away Team</th>
-                            -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="match : ${recentMatches}">
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
-                            -->
-                            <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
-                            <td th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"></td>
-                            <!--
-                            <td>
-                            <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
-                            </td>
-                            -->
-                            <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
-                            <td th:text="${match.away_team.team_name}" align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"></td>
-                            <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
-                            -->
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 </main>
 <footer>
     <div class="container above">
@@ -120,8 +74,9 @@
                 <li><a href="/competition/43">FIFA World Cup</a></li>
                 <li><a href="/competition/49">NWSL</a></li>
                 <li><a href="/competition/72">Women's World Cup</a></li>
+
                 <!--
-                <li><a href="@{/competition/${id}(id={11})}">La Liga</a></li>
+                <li><a href="@{/competition/{id}(id=${11})}">La Liga</a></li>
                 <li><a href="@{/competition/${id}(id={37})}">FA Women's Super League</a></li>
                 <li><a href="@{/competition/${id}(id={43})}">FIFA World Cup</a></li>
                 <li><a href="@{/competition/${id}(id={49})}">NWSL</a></li>
@@ -138,8 +93,6 @@
 </footer>
 </body>
 </html>
-
-
 
 <style>
     @charset "UTF-8";
@@ -225,6 +178,9 @@
 
     .matchList {
       margin: auto; }
+
+    .competitionName {
+    margin: auto; }
 
     .searchBlock {
       margin: auto; }
