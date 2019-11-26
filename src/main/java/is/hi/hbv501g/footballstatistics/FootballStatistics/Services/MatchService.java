@@ -17,6 +17,8 @@ public interface MatchService {
     Optional<Match> findByMatchId(int match_id);
     List<Match> findByTeamName(String team_name);
     List<Match> findByPlayerName(String player_name);
+    List<Match> findByTeamId(int team_id);
+    List<Match> findByPlayerId(int player_id);
 
     /*
     List<Match> findByDate(Date dateFrom, Date dateTo);
