@@ -1,5 +1,6 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics;
 
+import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Tactics;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,16 +19,18 @@ public class SearchController {
     private PlayerService playerService;
     private SeasonService seasonService;
     private TeamService teamService;
+    private TacticsService tacticsService;
 
     // Dependency Injection
     @Autowired
-    public SearchController(CompetitionService competitionService, MatchEventService matchEventService, MatchService matchService, PlayerService playerService, SeasonService seasonService, TeamService teamService) {
+    public SearchController(CompetitionService competitionService, MatchEventService matchEventService, MatchService matchService, PlayerService playerService, SeasonService seasonService, TeamService teamService, TacticsService tacticsService) {
         this.competitionService = competitionService;
         this.matchEventService = matchEventService;
         this.matchService = matchService;
         this.playerService = playerService;
         this.seasonService = seasonService;
         this.teamService = teamService;
+        this.tacticsService = tacticsService;
     }
 
     @RequestMapping("/")
@@ -44,8 +47,12 @@ public class SearchController {
         return "competitionPage";
     }
 
-    @RequestMapping("/match")
-    public String matchPage() {
+    @RequestMapping("/match/{id}")
+    public String matchPage(@PathVariable int id, Model model) {
+        model.addAttribute("eventMatch", matchService.findByMatchId(id));
+        model.addAttribute("matchEvents", matchEventService.findAll());
+        model.addAttribute("homeTactics", tacticsService.findHomeTeam(id));
+        model.addAttribute("awayTactics", tacticsService.findAwayTeam(id));
         return "matchPage";
     }
 

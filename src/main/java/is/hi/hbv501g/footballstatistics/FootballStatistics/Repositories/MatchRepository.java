@@ -26,6 +26,8 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     List<Match> findRecentMatches();
     @Query(value = "SELECT * FROM match m WHERE m.competition_id = ?1", nativeQuery = true)
     List<Match> findByCompetitionId(int competition_id);
+    @Query(value = "SELECT * FROM match m WHERE m.match_id = ?1", nativeQuery = true)
+    Optional<Match> findByMatchId(int match_id);
     /*
     List<Match> findByDate(Date dateFrom, Date dateTo);
     // finds num recent matches
@@ -33,6 +35,5 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     List<Match> findRecentMatches(int num);
     // finds matches where team is home_team or away_team in Matches
     List<Match> findByTeam(Team team);
-    Optional<Match> findByMatch_Id(int match_id);
      */
 }
