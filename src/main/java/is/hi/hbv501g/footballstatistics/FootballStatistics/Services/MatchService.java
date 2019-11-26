@@ -15,6 +15,9 @@ public interface MatchService {
     List<Match> findRecentMatches();
     List<Match> findByCompetitionId(int competition_id);
     Optional<Match> findByMatchId(int match_id);
+    List<Match> findByTeamName(String team_name);
+    List<Match> findByPlayerName(String player_name);
+
     /*
     List<Match> findByDate(Date dateFrom, Date dateTo);
     // finds matches where team = home_team or away_team in Matches

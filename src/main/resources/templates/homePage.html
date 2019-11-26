@@ -62,11 +62,12 @@
         </div>
     </section>
 
+
     <!-- TODO: Click on teams to view Team page -->
 
         <section id="matches">
             <div class="container row">
-                <div th:switch="${recentMatches}" class="matchList">
+                <div th:switch="${matches}" class="matchList">
                     <h2 th:case="null">No matches yet!</h2>
                     <div th:case="*">
                         <table id="table1">
@@ -86,7 +87,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="match : ${recentMatches}">
+                        <tr th:each="match : ${matches}">
                             <!--
                             <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
                             -->
