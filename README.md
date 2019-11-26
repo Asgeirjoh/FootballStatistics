@@ -1,14 +1,14 @@
 # FootballStatistics
 
 ## TODO
-- Favourites button
-- Favourites page
-- user signup and login
-- user favourites
-- fix matchPage lineups
-- matchPage timeline
-- playerPage show player info
-- teamPage show players
+- Favourites button, Son
+- Favourites page, ÁsgeirA, Son
+- user signup and login, ÁsgeirA
+- user favourites, ÁsgeirA
+- fix matchPage lineups, Son
+- matchPage timeline, Bjarki
+- playerPage show player info, Ásgeir
+- teamPage show players, Ásgeir
 
 
 
