@@ -15,12 +15,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="/epl" class="leagueButton">EPL</a></li>
-                <li><a href="/laliga" class="leagueButton">La liga</a></li>
-                <li><a href="/bundesliga" class="leagueButton">Bundesliga</a></li>
-                <li><a href="/seriea" class="leagueButton">Serie A</a></li>
-                <li><a href="/ligue1" class="leagueButton">Ligue 1</a></li>
-                <li><a href="/rfpl" class="leagueButton">RFPL</a></li>
+                <li><a href="/competition/11" class="leagueButton">La Liga</a></li>
+                <li><a href="/competition/37" class="leagueButton">FA Women's Super League</a></li>
+                <li><a href="/competition/43" class="leagueButton">FIFA World Cup</a></li>
+                <li><a href="/competition/49" class="leagueButton">NWSL</a></li>
+                <li><a href="/competition/72" class="leagueButton">Women's World Cup</a></li>
             </ul>
         </nav>
     </div>
@@ -32,7 +31,6 @@
     <div class="container">
         <div class="title">
             <h1>Football Statistics</h1>
-            <h2>EPL</h2>
         </div>
     </div>
 </section>
@@ -64,28 +62,47 @@
         </div>
     </section>
 
-    <section id="matches">
-        <div class="container row">
-            <div th:switch="${recentMatches}" class="matchList">
-                <h2 th:case="null">No matches yet!</h2>
-                <div th:case="*">
-                    <table id="table1">
-                        <thead>
-                        <tr>
+    <!-- TODO: Click on teams to view Team page -->
+
+        <section id="matches">
+            <div class="container row">
+                <div th:switch="${recentMatches}" class="matchList">
+                    <h2 th:case="null">No matches yet!</h2>
+                    <div th:case="*">
+                        <table id="table1">
+                            <thead>
+                            <tr>
+                                <!--
+                                <th>View Home Team</th>
+                                -->
                             <th>Home Score</th>
                             <th>Home Team</th>
                             <th>Date</th>
                             <th>Away Team</th>
                             <th>Away Score</th>
+                            <!--
+                            <th>View Away Team</th>
+                            -->
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="match : ${recentMatches}">
+                            <!--
+                            <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
+                            -->
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
                             <td th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"></td>
+                            <!--
+                            <td>
+                            <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
+                            </td>
+                            -->
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
                             <td th:text="${match.away_team.team_name}" align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
+                            <!--
+                            <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
+                            -->
                         </tr>
                         </tbody>
                     </table>
@@ -98,12 +115,18 @@
     <div class="container above">
         <nav class="footer">
             <ul>
-                <li><a href="/epl">EPL</a></li>
-                <li><a href="/laliga">La liga</a></li>
-                <li><a href="/bundesliga">Bundesliga</a></li>
-                <li><a href="/seriea">Serie A</a></li>
-                <li><a href="/ligue1">Ligue 1</a></li>
-                <li><a href="/rfpl">RFPL</a></li>
+                <li><a href="/competition/11">La Liga</a></li>
+                <li><a href="/competition/37">FA Women's Super League</a></li>
+                <li><a href="/competition/43">FIFA World Cup</a></li>
+                <li><a href="/competition/49">NWSL</a></li>
+                <li><a href="/competition/72">Women's World Cup</a></li>
+                <!--
+                <li><a href="@{/competition/${id}(id={11})}">La Liga</a></li>
+                <li><a href="@{/competition/${id}(id={37})}">FA Women's Super League</a></li>
+                <li><a href="@{/competition/${id}(id={43})}">FIFA World Cup</a></li>
+                <li><a href="@{/competition/${id}(id={49})}">NWSL</a></li>
+                <li><a href="@{/competition/${id}(id={72})}">Women's World Cup</a></li>
+                -->
             </ul>
         </nav>
     </div>

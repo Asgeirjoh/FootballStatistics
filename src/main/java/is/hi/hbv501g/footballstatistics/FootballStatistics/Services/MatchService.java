@@ -13,11 +13,11 @@ public interface MatchService {
     List<Match> findAll();
     // finds num most recent matches
     List<Match> findRecentMatches();
+    List<Match> findByCompetitionId(int competition_id);
+    Optional<Match> findByMatchId(int match_id);
     /*
-    List<Match> findByCompetition(String competition);
     List<Match> findByDate(Date dateFrom, Date dateTo);
     // finds matches where team = home_team or away_team in Matches
     List<Match> findByTeam(Team team);
-    Optional<Match> findByMatch_Id(int match_id);
      */
 }

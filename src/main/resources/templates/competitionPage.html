@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Footballstatistics | Match Page</title>
+    <title>Footballstatistics | Competition Page</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> <!--Fæ ekki þennan link til þess að virka á localhost. CSS er í staðinn skrifað í þessu skjali fyrir neðan.-->
 </head>
@@ -30,65 +30,40 @@
 <section id="showcase">
     <div class="container">
         <div class="title">
-            <h1>Match</h1>
+            <h1>Competition</h1>
         </div>
     </div>
 </section>
 <main>
-    <section id="events">
-        <div class="container row">
-            <div th:switch="${homeTactics}" class="matchList">
-                <h2 th:case="null">No match yet!</h2>
-                <div th:case="*">
-                    <table id="table1">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>Player</th>
-                            <th>Pos</th>
-                            <th>Formation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="tactics : ${homeTactics}">
-                            <td th:text="${tactics.team.team_name}" align="center"></td>
-                            <td th:text="${tactics.player.player_name}" align="center"></td>
-                            <td th:text="${tactics.position_name}" align="center"></td>
-                            <td th:text="${tactics.tactics_formation}" align="center"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+<section id="matches">
+    <div class="container row">
+        <div th:switch="${competitionMatches}" class="matchList">
+            <h2 th:case="null">No matches yet!</h2>
+            <div th:case="*">
+                <table id="table1">
+                    <thead>
+                    <tr>
+                        <th>Home Score</th>
+                        <th>Home Team</th>
+                        <th>Date</th>
+                        <th>Away Team</th>
+                        <th>Away Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="match : ${competitionMatches}">
+                        <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
+                        <td th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"></td>
+                        <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
+                        <td th:text="${match.away_team.team_name}" align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"></td>
+                        <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
-    <section id="events">
-        <div class="container row">
-            <div th:switch="${awayTactics}" class="matchList">
-                <h2 th:case="null">No match yet!</h2>
-                <div th:case="*">
-                    <table id="table1">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>Player</th>
-                            <th>Pos</th>
-                            <th>Formation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="tactics : ${awayTactics}">
-                            <td th:text="${tactics.team.team_name}" align="center"></td>
-                            <td th:text="${tactics.player.player_name}" align="center"></td>
-                            <td th:text="${tactics.position_name}" align="center"></td>
-                            <td th:text="${tactics.tactics_formation}" align="center"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 </main>
 <footer>
     <div class="container above">
@@ -99,6 +74,14 @@
                 <li><a href="/competition/43">FIFA World Cup</a></li>
                 <li><a href="/competition/49">NWSL</a></li>
                 <li><a href="/competition/72">Women's World Cup</a></li>
+
+                <!--
+                <li><a href="@{/competition/{id}(id=${11})}">La Liga</a></li>
+                <li><a href="@{/competition/${id}(id={37})}">FA Women's Super League</a></li>
+                <li><a href="@{/competition/${id}(id={43})}">FIFA World Cup</a></li>
+                <li><a href="@{/competition/${id}(id={49})}">NWSL</a></li>
+                <li><a href="@{/competition/${id}(id={72})}">Women's World Cup</a></li>
+                -->
             </ul>
         </nav>
     </div>
