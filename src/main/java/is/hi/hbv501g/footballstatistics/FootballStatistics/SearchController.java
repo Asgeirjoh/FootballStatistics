@@ -73,7 +73,7 @@ public class SearchController {
     public String teamPage(@PathVariable int id, Model model) {
         model.addAttribute("oneTeam", teamService.findByTeamId(id));
         model.addAttribute("matches", matchService.findByTeamId(id));
-        model.addAttribute("matches", playerService.findAll());
+        model.addAttribute("playerTactics", tacticsService.findByTeam(id));
         return "teamPage";
     }
 

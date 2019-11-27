@@ -63,6 +63,31 @@
         </div>
     </section>
 
+    <!-- Team Players Info -->
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${playerTactics}" class="matchList">
+                <h2 th:case="null">No players found!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Player name</th>
+                            <th>Position</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tactics : ${playerTactics}">
+                            <td align="center"><a th:href="@{/player/{id}(id=${tactics.player.player_id})}" th:text="${tactics.player.player_name}" class="teamButton"></a></td>
+                            <td th:text="${tactics.position_name}" align="center"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Team matches -->
     <section id="matches">
         <div class="container row">

@@ -36,27 +36,30 @@
 </section>
 <main>
 
-    <section>
-    <div th:switch="${onePlayer}" class="matchList">
-        <h2 th:case="null">No player found!</h2>
-        <div th:case="*">
-            <tr th:each="player : ${onePlayer}">
-                <td th:text="${player.player_name}"></td>
-                <td th:text="${player.jersey_number}"></td>
-                <td th:text="${player.team.team_name}"></td>
-            </tr>
-        </div>
-    </div>
-    </section>
-
-    <section>
-        <div th:switch="${playerTactics}" class="matchList">
-            <h2 th:case="null"></h2>
-            <div th:case="*">
-                <tr th:each="tactics : ${playerTactics}">
-                    <td th:text="${tactics.position_name}">Position</td>
-                    <td th:text="${tactics.player.jersey_number}">Number</td>
-                </tr>
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${playerTactics}" class="matchList">
+                <h2 th:case="null">No players found!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Team Name</th>
+                            <th>Position</th>
+                            <th>Jersey Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tactics : ${playerTactics}">
+                            <td th:text="${tactics.player.player_name}" align="center" width="180"></td>
+                            <td align="center" width="250"><a th:href="@{/team/{id}(id=${tactics.team.team_id})}" th:text="${tactics.team.team_name}" class="teamButton"></a></td>
+                            <td th:text="${tactics.position_name}" align="center"></td>
+                            <td th:text="${tactics.player.jersey_number}" align="center"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>

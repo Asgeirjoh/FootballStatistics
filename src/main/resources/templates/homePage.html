@@ -70,38 +70,21 @@
                         <table id="table1">
                             <thead>
                             <tr>
-                                <!--
-                                <th>View Home Team</th>
-                                -->
                             <th>Home Score</th>
                             <th>Home Team</th>
                             <th>Date</th>
                             <th>Away Team</th>
                             <th>Away Score</th>
-                            <!--
-                            <th>View Away Team</th>
-                            -->
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="match : ${matches}">
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
-                            -->
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
                             <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
-                            <!--
-                            <td>
-                            <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
-                            </td>
-                            -->
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
                             <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
                             <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
-                            -->
                         </tr>
                         </tbody>
                     </table>
