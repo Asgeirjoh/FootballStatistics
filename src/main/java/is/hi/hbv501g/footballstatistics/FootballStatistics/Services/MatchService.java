@@ -11,6 +11,7 @@ public interface MatchService {
     Match save(Match match);
     void delete(Match match);
     List<Match> findAll();
+
     // finds num most recent matches
     List<Match> findRecentMatches();
     List<Match> findByCompetitionId(int competition_id);
@@ -18,6 +19,7 @@ public interface MatchService {
     List<Match> findByTeamName(String team_name);
     List<Match> findByPlayerName(String player_name);
     List<Match> findByTeamId(int team_id);
+
     List<Match> findByPlayerId(int player_id);
 
     /*
