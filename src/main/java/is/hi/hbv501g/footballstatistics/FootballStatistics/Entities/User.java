@@ -3,7 +3,7 @@ package is.hi.hbv501g.footballstatistics.FootballStatistics.Entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Table(name = "footyUser")
 @Entity
 public class User {
     @Id
