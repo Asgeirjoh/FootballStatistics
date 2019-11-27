@@ -36,8 +36,34 @@
 </section>
 <main>
 
-    <!-- TODO: Click on teams to view Team page -->
+    <!-- Team Info -->
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${oneTeam}" class="matchList">
+                <h2 th:case="null">No team found!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Team name</th>
+                            <th>Team gender</th>
+                            <th>Team country</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="team : ${oneTeam}">
+                            <td th:text="${team.team_name}" align="center"></td>
+                            <td th:text="${team.team_gender}" align="center"></td>
+                            <td th:text="${team.team_country}" align="center"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Team matches -->
     <section id="matches">
         <div class="container row">
             <div th:switch="${matches}" class="matchList">
@@ -46,38 +72,21 @@
                     <table id="table1">
                         <thead>
                         <tr>
-                            <!--
-                            <th>View Home Team</th>
-                            -->
                             <th>Home Score</th>
                             <th>Home Team</th>
                             <th>Date</th>
                             <th>Away Team</th>
                             <th>Away Score</th>
-                            <!--
-                            <th>View Away Team</th>
-                            -->
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="match : ${matches}">
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
-                            -->
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
                             <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
-                            <!--
-                            <td>
-                            <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
-                            </td>
-                            -->
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
                             <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
                             <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
-                            -->
                         </tr>
                         </tbody>
                     </table>
@@ -95,13 +104,6 @@
                 <li><a href="/competition/43">FIFA World Cup</a></li>
                 <li><a href="/competition/49">NWSL</a></li>
                 <li><a href="/competition/72">Women's World Cup</a></li>
-                <!--
-                <li><a href="@{/competition/${id}(id={11})}">La Liga</a></li>
-                <li><a href="@{/competition/${id}(id={37})}">FA Women's Super League</a></li>
-                <li><a href="@{/competition/${id}(id={43})}">FIFA World Cup</a></li>
-                <li><a href="@{/competition/${id}(id={49})}">NWSL</a></li>
-                <li><a href="@{/competition/${id}(id={72})}">Women's World Cup</a></li>
-                -->
             </ul>
         </nav>
     </div>

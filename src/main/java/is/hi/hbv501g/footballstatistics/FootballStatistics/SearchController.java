@@ -64,17 +64,17 @@ public class SearchController {
     @RequestMapping("/player/{id}")
     public String playerPage(@PathVariable int id, Model model) {
         model.addAttribute("matches", matchService.findByPlayerId(id));
+        model.addAttribute("onePlayer", playerService.findByPlayerId(id));
+        model.addAttribute("playerTactics", tacticsService.findByPlayerId(id));
         return "playerPage";
     }
 
     @RequestMapping("/team/{id}")
     public String teamPage(@PathVariable int id, Model model) {
-        model.addAttribute("team", teamService.findByTeamId(id));
+        model.addAttribute("oneTeam", teamService.findByTeamId(id));
         model.addAttribute("matches", matchService.findByTeamId(id));
         return "teamPage";
     }
-
-    /* Til að sýna allar keppnir á Homapage */
 
 
     @RequestMapping("/search")
