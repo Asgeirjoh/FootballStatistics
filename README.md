@@ -9,6 +9,7 @@
 - matchPage timeline, **Bjarki**
 - playerPage show player info, **Ásgeir**
 - teamPage show players, **Ásgeir**
+- show date and kickoff in match tables
 
 
 
