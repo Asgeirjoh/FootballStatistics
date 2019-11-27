@@ -14,4 +14,6 @@ public interface TacticsRepository extends JpaRepository<Tactics, Long> {
     List<Tactics> findHomeTeam(int match_id);
     @Query(value = "SELECT * FROM tactics t WHERE t.match_id = ?1 AND t.team_id = (SELECT away_team_id FROM match m WHERE m.match_id = ?1)", nativeQuery = true)
     List<Tactics> findAwayTeam(int match_id);
+    @Query(value = "SELECT * FROM tactics t WHERE t.player_id = ?1", nativeQuery = true)
+    List<Tactics> findByPlayerId(int player_id);
 }

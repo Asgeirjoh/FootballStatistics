@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Footballstatistics | Main Page</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> <!--Fæ ekki þennan link til þess að virka á localhost. CSS er í staðinn skrifað í þessu skjali fyrir neðan.-->
+    <link rel="stylesheet" type="text/css" href="CSS/styles.css"> <!--Fæ ekki þennan link til þess að virka á localhost. CSS er í staðinn skrifað í þessu skjali fyrir neðan.-->
 </head>
 <body>
 <header>
@@ -77,31 +77,23 @@
         </div>
     </section>
 
-    <!-- TODO: Click on teams to view Team page -->
-
         <section id="matches">
             <div class="container row">
-                <div th:switch="${recentMatches}" class="matchList">
+                <div th:switch="${matches}" class="matchList">
                     <h2 th:case="null">No matches yet!</h2>
                     <div th:case="*">
                         <table id="table1">
                             <thead>
                             <tr>
-                                <!--
-                                <th>View Home Team</th>
-                                -->
                             <th>Home Score</th>
                             <th>Home Team</th>
                             <th>Date</th>
                             <th>Away Team</th>
                             <th>Away Score</th>
-                            <!--
-                            <th>View Away Team</th>
-                            -->
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="match : ${recentMatches}">
+                        <tr th:each="match : ${matches}">
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
                             <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>

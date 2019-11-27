@@ -39,4 +39,9 @@ public class TacticsServiceImplementation implements TacticsService {
     public List<Tactics> findAwayTeam(int match_id) {
         return repository.findAwayTeam(match_id);
     }
+
+    @Override
+    public List<Tactics> findByPlayerId(int player_id) {
+        return repository.findByPlayerId(player_id);
+    }
 }

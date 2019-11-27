@@ -2,6 +2,7 @@ package is.hi.hbv501g.footballstatistics.FootballStatistics.Repositories;
 
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +15,9 @@ import java.util.Optional;
  */
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
     List<Player> findAll();
+    @Query(value = "SELECT * FROM player p WHERE p.player_id = ?1", nativeQuery = true)
+    List<Player> findByPlayerId(int player_id);
     /*
     List<Player> findByPlayer_Name(String player_name);
-    Optional<Player> findById(int player_id);
      */
 }
