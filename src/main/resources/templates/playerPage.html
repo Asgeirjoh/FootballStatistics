@@ -41,7 +41,7 @@
             <div th:switch="${playerTactics}" class="matchList">
                 <h2 th:case="null">No players found!</h2>
                 <div th:case="*">
-                    <table id="table1">
+                    <table id="table2">
                         <thead>
                         <tr>
                             <th>Player Name</th>
@@ -86,7 +86,7 @@
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
                             <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
-                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
+                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a><a th:href="@{/favorites/{id}(id=${username})}" class="matchButton" id="favoriteButton">Favorite</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -198,6 +198,10 @@
     ul {
       list-style-type: none; }
 
+    .notBranding {
+      font-size: 0.7em !important;
+      color: #fff; }
+
     .matchList {
       margin: auto; }
 
@@ -206,26 +210,31 @@
 
     #table1 {border-spacing: 0px 0; }
 
-    #table1 th {
+    #table1 th, #table2 th {
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: center;
       background-color: #555;
       color: white; }
 
-    #table1 tr:hover td {background-color: #ddd !important;}
+    #table1 tr:hover td, #table2 tr:hover td {background-color: #ddd !important;}
 
-    #table1 tr, #table1 th {
+    #table1 tr, #table1 th, #table2 tr, #table2 th{
       border: 1px solid #ddd;
       padding: 14px; }
 
     #table1 tr {
       font-size: 22px;
-      line-height: 48px; }
+      height: 100px;
+      vertical-align: middle; }
 
-    #table1 td {
+    #table1 td, #table2 td {
       border-bottom: solid #fff;
       border-top: solid #fff; }
+
+    #table2 tr {
+      font-size: 22px;
+      height: 40px; }
 
     #leftTeam {
       padding-right: 30px; }
@@ -278,6 +287,7 @@
       transition: background-color 500ms ease, color 500ms ease; }
 
     .matchButton {
+      margin: 0px 3px 0px 3px;
       color: #fff;
       background-color: #666;
       border: 1px solid #666;
@@ -288,7 +298,10 @@
       color: #fff;
       text-decoration: none;
       cursor: pointer;
+      vertical-align: middle;
       transition: background-color 500ms ease, color 500ms ease; }
+
+    #favoriteButton {}
 
     .teamButton {
       color: #000;
@@ -355,7 +368,7 @@
 
     main {
       /* stylelint-disable-line */
-      max-width: 1200px;
+      max-width: 1300px;
       box-sizing: border-box;
       margin: 0 auto;
       overflow: hidden; }
