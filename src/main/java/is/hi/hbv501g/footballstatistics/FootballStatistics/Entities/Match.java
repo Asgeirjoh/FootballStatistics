@@ -14,9 +14,17 @@ public class Match {
     private int match_id;
     private Date match_date;
     private String kick_off;
+
     @ManyToOne
     @JoinColumn(name = "competition_id")
     private Competition competition;
+
+    @ManyToOne
+    private Player player;
+
+    @ManyToOne
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "season_id")
     private Season season;
@@ -46,12 +54,24 @@ public class Match {
     public Match() {
     }
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     // Constructor
     public Match(int match_id, Date match_date, String kick_off, Competition competition, Season season, Team home_team,
                  String home_team_group, Team away_team, String away_team_group, int home_score, int away_score, int match_week,
                  int competition_stage_id, String competition_stage_name, String stadium_name, String stadium_country_name,
                  String referee_name, String referee_country_name, String home_team_managers_name, String home_team_managers_country_name,
-                 String away_team_managers_name, String away_team_managers_country_name) {
+                 String away_team_managers_name, String away_team_managers_country_name ,Player player, User user) {
+     //   this.user = user;
+        this.user = user;
+        this.player = player;
         this.match_id = match_id;
         this.match_date = match_date;
         this.kick_off = kick_off;
@@ -87,6 +107,14 @@ public class Match {
 
     public Date getMatch_date() {
         return match_date;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public void setMatch_date(Date match_date) {
@@ -252,6 +280,7 @@ public class Match {
     public void setAway_team_managers_country_name(String away_team_managers_country_name) {
         this.away_team_managers_country_name = away_team_managers_country_name;
     }
+
 
     //Returns Date as String in the format: Jan 01, 2019 00:00
     public String getDateString(){

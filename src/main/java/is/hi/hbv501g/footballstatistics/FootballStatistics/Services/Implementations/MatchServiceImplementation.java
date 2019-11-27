@@ -62,6 +62,12 @@ public class MatchServiceImplementation implements MatchService {
     public List<Match> findByPlayerName(String player_name){
         return repository.findByPlayerName(player_name);
     }
+
+    @Override
+    public List<Match> findByPlayerId(int player_id) {
+        return repository.findByPlayerId( player_id);
+    }
+
     ;
 
 

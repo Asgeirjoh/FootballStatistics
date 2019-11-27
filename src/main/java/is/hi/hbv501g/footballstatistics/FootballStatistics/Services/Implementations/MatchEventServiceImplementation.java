@@ -1,6 +1,7 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics.Services.Implementations;
 
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.MatchEvent;
+import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Player;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Repositories.MatchEventRepository;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.MatchEventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class MatchEventServiceImplementation implements MatchEventService {
         return repository.findAll();
     }
 
+
     @Override
     public Optional<MatchEvent> findById(String id) {
         return repository.findById(id);
     }
+
+
 }

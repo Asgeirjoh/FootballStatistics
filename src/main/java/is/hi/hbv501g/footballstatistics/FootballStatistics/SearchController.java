@@ -1,17 +1,19 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics;
-import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Match;
-import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Tactics;
-import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Team;
+
+import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.User;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import javax.validation.Valid;
+
 
 @Controller
 public class SearchController {
@@ -25,10 +27,12 @@ public class SearchController {
     private SeasonService seasonService;
     private TeamService teamService;
     private TacticsService tacticsService;
+    private UserService userService;
 
     // Dependency Injection
     @Autowired
-    public SearchController(CompetitionService competitionService, MatchEventService matchEventService, MatchService matchService, PlayerService playerService, SeasonService seasonService, TeamService teamService, TacticsService tacticsService) {
+    public SearchController(CompetitionService competitionService, MatchEventService matchEventService, MatchService matchService, PlayerService playerService,
+                            SeasonService seasonService, TeamService teamService, TacticsService tacticsService, UserService userService) {
         this.competitionService = competitionService;
         this.matchEventService = matchEventService;
         this.matchService = matchService;
@@ -36,6 +40,7 @@ public class SearchController {
         this.seasonService = seasonService;
         this.teamService = teamService;
         this.tacticsService = tacticsService;
+        this.userService = userService;
     }
 
     @RequestMapping("/")
@@ -61,10 +66,12 @@ public class SearchController {
         return "matchPage";
     }
 
-    @RequestMapping("/player")
+    @RequestMapping("/playerPage")
     public String playerPage() {
         return "playerPage";
     }
+
+
 
     @RequestMapping("/team/{id}")
     public String teamPage(@PathVariable int id, Model model) {
@@ -72,13 +79,27 @@ public class SearchController {
         return "teamPage";
     }
 
-    /* Til að sýna allar keppnir á Homapage */
-
-
+    // til ad fa shit til ad virka
     @RequestMapping("/search")
     public String search(){
         return "search";
     }
+
+    @RequestMapping("/searchPlayer")
+    public String playerSearch(){
+        return "searchPlayer";
+    }
+
+    @RequestMapping("/homePage")
+    public String homePage(){ return "homePage";}
+
+    @RequestMapping("/userPage")
+    public String userPage(){return "userPage";}
+
+    @RequestMapping("/users")
+    public String users(){return "users";}
+
+
 
 
     /* Leitarfall til ad leita af liðum */
@@ -90,10 +111,41 @@ public class SearchController {
         return "HomePage";
     }
 
-    /* Leitarfall til ad leita af liðum */
+    /* Leitarfall til ad leita af leikmanni */
     @RequestMapping(value= "/playerSearch", method = RequestMethod.POST)
-    public String searchPlayer(@RequestParam(value = "search", required = false) String search, Model model){
+    public String searchPlayer(@RequestParam(value = "search", required = false) String search, Model model) {
         model.addAttribute("matches", matchService.findByPlayerName(search));
         return "playerPage";
     }
-}
+
+
+     /* Fyrir Signup*/
+        @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+        public String signUpGET(User user){
+            return "signUp";
+        }
+
+        @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+        public String signUpPOST(@Valid User user, BindingResult result, Model model){
+            if(result.hasErrors()){
+                return "signUp";
+            }
+            User exists = userService.findByUsername(user.username);
+            if(exists == null){
+                userService.save(user);
+            }
+            model.addAttribute("matches", matchService.findAll());
+            return "HomePage";
+        }
+        // til thess ad sja notendur i kerfinu
+         @RequestMapping(value = "/users", method = RequestMethod.GET)
+         public String usersGET(Model model){
+            model.addAttribute("users", userService.findAll());
+            return "users";
+    }
+
+
+
+
+    }
+
