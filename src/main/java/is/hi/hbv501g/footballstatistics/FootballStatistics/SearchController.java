@@ -1,5 +1,6 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics;
 
+import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Favourites;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.User;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,13 @@ public class SearchController {
     private TeamService teamService;
     private TacticsService tacticsService;
     private UserService userService;
+    private FavouritesService favouritesService;
 
     // Dependency Injection
     @Autowired
     public SearchController(CompetitionService competitionService, MatchEventService matchEventService, MatchService matchService, PlayerService playerService,
-                            SeasonService seasonService, TeamService teamService, TacticsService tacticsService, UserService userService) {
+                            SeasonService seasonService, TeamService teamService, TacticsService tacticsService, UserService userService, FavouritesService favouritesService) {
+        this.favouritesService = favouritesService;
         this.competitionService = competitionService;
         this.matchEventService = matchEventService;
         this.matchService = matchService;
@@ -134,7 +137,8 @@ public class SearchController {
             if(exists == null){
                 userService.save(user);
             }
-            model.addAttribute("matches", matchService.findAll());
+
+            model.addAttribute("Matches", matchService.findAll());
             return "HomePage";
         }
         // til thess ad sja notendur i kerfinu

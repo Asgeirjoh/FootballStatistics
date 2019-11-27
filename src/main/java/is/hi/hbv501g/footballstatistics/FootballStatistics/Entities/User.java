@@ -14,20 +14,21 @@ public class User {
     //@JoinColumn(name ="password")
     public String password;
 
+
     @OneToMany(mappedBy = "user")
-    private List<Match> favGames = new ArrayList<>();
+    private List<Favourites> favMatches = new ArrayList<>();
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-   public List<Match> getFavGames() {
-        return favGames;
+   public List<Favourites> getFavMatches() {
+        return favMatches;
     }
 
-    public void setFavGames(List<Match> favGames) {
-        this.favGames = favGames;
+    public void setFavMatches(List<Favourites> favGames) {
+        this.favMatches = favGames;
     }
 
 

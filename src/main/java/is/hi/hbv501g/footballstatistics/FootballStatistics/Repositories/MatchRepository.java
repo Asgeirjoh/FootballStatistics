@@ -34,6 +34,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     @Query(value = "SELECT * FROM match m WHERE m.player_id = (SELECT player_id FROM player WHERE player_name = ?1)", nativeQuery = true)
     List<Match> findByPlayerName(String player_name);
 
+
     //  PRUFA
     @Query(value = "SELECT * FROM match m WHERE m.player_id = ?1",nativeQuery = true)
     List<Match> findByPlayerId(int player_id);

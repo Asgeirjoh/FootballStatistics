@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 //@Table(name = "matches")
@@ -23,7 +24,13 @@ public class Match {
     private Player player;
 
     @ManyToOne
+    private Favourites favourites;
+
+    @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "match")
+    private List<Favourites> favMatches = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "season_id")
@@ -63,13 +70,22 @@ public class Match {
         this.user = user;
     }
 
+    public Favourites getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(Favourites favourites) {
+        this.favourites = favourites;
+    }
+
     // Constructor
     public Match(int match_id, Date match_date, String kick_off, Competition competition, Season season, Team home_team,
                  String home_team_group, Team away_team, String away_team_group, int home_score, int away_score, int match_week,
                  int competition_stage_id, String competition_stage_name, String stadium_name, String stadium_country_name,
                  String referee_name, String referee_country_name, String home_team_managers_name, String home_team_managers_country_name,
-                 String away_team_managers_name, String away_team_managers_country_name ,Player player, User user) {
+                 String away_team_managers_name, String away_team_managers_country_name ,Player player, User user, Favourites favourites) {
      //   this.user = user;
+        this.favourites = favourites;
         this.user = user;
         this.player = player;
         this.match_id = match_id;
