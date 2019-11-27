@@ -13,6 +13,21 @@
         <div id="branding">
             <a href="/">Football Statistics</a>
         </div>
+        <div id="branding" class="notBranding">
+            <form action="/action_page.php" class="searchForm">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password">
+                </div>
+                <div class="searchButton">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+        </div>
         <nav>
             <ul>
                 <li><a href="/competition/11" class="leagueButton">La Liga</a></li>
@@ -87,23 +102,12 @@
                         </thead>
                         <tbody>
                         <tr th:each="match : ${recentMatches}">
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
-                            -->
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
                             <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
-                            <!--
-                            <td>
-                            <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
-                            </td>
-                            -->
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
                             <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
-                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
-                            -->
+                            <td width="210" class="matchButtons"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a><a th:href="@{/favorites/{id}(id=${username})}" class="matchButton" id="favoriteButton">Favorite</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -224,6 +228,10 @@
     ul {
       list-style-type: none; }
 
+    .notBranding {
+      font-size: 0.7em !important;
+      color: #fff; }
+
     .matchList {
       margin: auto; }
 
@@ -247,7 +255,8 @@
 
     #table1 tr {
       font-size: 22px;
-      line-height: 48px; }
+      height: 100px;
+      vertical-align: middle; }
 
     #table1 td {
       border-bottom: solid #fff;
@@ -304,6 +313,7 @@
       transition: background-color 500ms ease, color 500ms ease; }
 
     .matchButton {
+      margin: 0px 3px 0px 3px;
       color: #fff;
       background-color: #666;
       border: 1px solid #666;
@@ -314,7 +324,10 @@
       color: #fff;
       text-decoration: none;
       cursor: pointer;
+      vertical-align: middle;
       transition: background-color 500ms ease, color 500ms ease; }
+
+    #favoriteButton {}
 
     .teamButton {
       color: #000;
@@ -381,7 +394,7 @@
 
     main {
       /* stylelint-disable-line */
-      max-width: 1200px;
+      max-width: 1300px;
       box-sizing: border-box;
       margin: 0 auto;
       overflow: hidden; }

@@ -42,6 +42,7 @@ public class Match {
     private String away_team_managers_name;
     private String away_team_managers_country_name;
 
+
     // Empty constructor
     public Match() {
     }
@@ -255,8 +256,8 @@ public class Match {
 
     //Returns Date as String in the format: Jan 01, 2019 00:00
     public String getDateString(){
-        DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy hh:mm");
-        String strDate = dateFormat.format(match_date);
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy ");
+        String strDate = dateFormat.format(match_date) + kick_off.substring(0,5);
         return strDate;
     }
 

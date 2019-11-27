@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class SearchController {
-
+    //Login info
+    private String username = "Username123";
+    private String password;
 
     // Instance Variables
     private CompetitionService competitionService;
@@ -65,5 +67,10 @@ public class SearchController {
     public String teamPage(@PathVariable int id, Model model) {
         model.addAttribute("oneTeam", teamService.findByTeamId(id));
         return "teamPage";
+    }
+
+    @RequestMapping("/favorites")
+    public String favoritesPage(Model model) {
+        return "favoritesPage";
     }
 }
