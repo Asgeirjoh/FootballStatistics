@@ -15,7 +15,9 @@ import java.util.List;
 
 @Controller
 public class SearchController {
-
+    //Login info
+    private String username = "Username123";
+    private String password;
 
     // Instance Variables
     private CompetitionService competitionService;
@@ -76,6 +78,11 @@ public class SearchController {
         model.addAttribute("playerTactics", tacticsService.findByTeam(id));
         return "teamPage";
     }
+
+
+    @RequestMapping("/favorites")
+    public String favoritesPage(Model model) {
+        return "favoritesPage";
 
 
     @RequestMapping("/search")
