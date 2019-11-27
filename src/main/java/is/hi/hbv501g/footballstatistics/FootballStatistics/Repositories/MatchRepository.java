@@ -37,8 +37,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     @Query(value = "SELECT * FROM match m WHERE m.home_team_id = ?1 OR " +
             "m.away_team_id = ?1", nativeQuery = true)
     List<Match> findByTeamId(int team_id);
-    @Query(value = "SELECT * FROM match m Where m.match_id = (SELECT match_id FROM Tactics WHERE player_id = ?1)"
-            , nativeQuery = true)
+    @Query(value = "SELECT * FROM match m Where m.match_id = (SELECT match_id FROM Tactics WHERE player_id = ?1)", nativeQuery = true)
     List<Match> findByPlayerId(int player_id);
     /*
     List<Match> findByDate(Date dateFrom, Date dateTo);

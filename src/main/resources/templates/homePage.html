@@ -56,23 +56,17 @@
             <div class="searchBlock">
                 <h3>Search for matches</h3>
                 <div class="search">
-                    <form action="/action_page.php" class="searchForm">
-                        <div>
-                            <label for="startDate">Start Date:</label>
-                            <input type="date" id="startDate">
-                        </div>
-                        <div>
-                            <label for="endDate">End Date:</label>
-                            <input type="date" id="endDate">
-                        </div>
-                        <div>
-                            <label for="textBar">Team or Player:</label>
-                            <input type="text" id="textBar">
-                        </div>
+
+                        <form action="#" th:action="@{/teamSearch}" th:object="${matches}"  method="post">
+                            <input type="text" name="search" id="search" th:value="${search}"/>
+                            <input type="submit" value="Search"/>
+                        </form>
+                        <!--
                         <div class="searchButton">
                             <input type="submit" value="Search">
                         </div>
-                    </form>
+                        -->
+
                 </div>
             </div>
         </div>

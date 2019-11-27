@@ -1,5 +1,7 @@
 package is.hi.hbv501g.footballstatistics.FootballStatistics;
 
+
+
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.Favourites;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Entities.User;
 import is.hi.hbv501g.footballstatistics.FootballStatistics.Services.*;
@@ -136,13 +138,28 @@ public class SearchController {
 
 
      /* Fyrir Signup*/
+
+
         @RequestMapping(value = "/signUp", method = RequestMethod.GET)
         public String signUpGET(User user){
             return "signUp";
         }
 
+        @RequestMapping(value = "/login")
+        public String login(User user, Model model){
+            return "homePage";
+        }
+
+
+
+        @RequestMapping(value = "/makedata")
+        public String makedata(Model model){
+            return "homePage";
+        }
+
         @RequestMapping(value = "/signUp", method = RequestMethod.POST)
         public String signUpPOST(@Valid User user, BindingResult result, Model model){
+
             if(result.hasErrors()){
                 return "signUp";
             }
@@ -150,9 +167,8 @@ public class SearchController {
             if(exists == null){
                 userService.save(user);
             }
-
             model.addAttribute("Matches", matchService.findAll());
-            return "HomePage";
+            return "homePage";
         }
         // til thess ad sja notendur i kerfinu
          @RequestMapping(value = "/users", method = RequestMethod.GET)

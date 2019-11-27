@@ -14,7 +14,6 @@ public class User {
     //@JoinColumn(name ="password")
     public String password;
 
-
     @OneToMany(mappedBy = "user")
     private List<Favourites> favMatches = new ArrayList<>();
 
