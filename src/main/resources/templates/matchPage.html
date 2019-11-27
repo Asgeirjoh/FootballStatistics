@@ -100,6 +100,42 @@
             </div>
         </div>
     </section>
+
+    <section id="events">
+        <div class="container row">
+            <div th:switch="${matchEvents}" class="matchList">
+                <h2 th:case="null">Team not found!</h2>
+                <div th:case="*">
+                    <table id="table2">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Player</th>
+                            <th>Minute</th>
+                            <th>Event</th>
+                            <th>Outcome</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="match_event : ${matchEvents}">
+                            <td th:text="${match_event.team_name}" align="left" width="300"></td>
+                            <td th:text="${match_event.player_name}" align="left" width="300"></td>
+                            <td th:text="${match_event.minute}" align="left" width="30"></td>
+                            <td th:text="${match_event.type}" align="left" width="260"></td>
+                            <td> <span th:if="${match_event.shot_outcome == 'Goal'}">Goal</span>
+                                <span th:if="${match_event.foul_committed_card == 'Yellow Card'}">Yellow Card</span>
+                                <span th:if="${match_event.foul_committed_card == 'Red Card'}">Red Card</span>
+                                <span th:if="${match_event.shot_outcome == 'Saved'}">Shot on target</span>
+                                <span th:if="${match_event.sub_replacement != 'null'}"> <span th:text="${match_event.sub_replacement}"></spanth:text> </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 <footer>
     <div class="container above">

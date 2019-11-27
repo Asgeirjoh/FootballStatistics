@@ -31,4 +31,9 @@ public class MatchEventServiceImplementation implements MatchEventService {
     public Optional<MatchEvent> findById(String id) {
         return repository.findById(id);
     }
+
+    @Override
+    public List<MatchEvent> findByMatchId(int id) {
+        return repository.findByMatchId(id);
+    }
 }

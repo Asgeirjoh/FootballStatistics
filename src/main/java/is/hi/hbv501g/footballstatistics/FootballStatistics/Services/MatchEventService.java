@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface MatchEventService {
     List<MatchEvent> findAll();
     Optional<MatchEvent> findById(String id);
+    List<MatchEvent> findByMatchId(int id);
 }

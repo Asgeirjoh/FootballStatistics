@@ -57,7 +57,7 @@ public class SearchController {
     @RequestMapping("/match/{id}")
     public String matchPage(@PathVariable int id, Model model) {
         model.addAttribute("eventMatch", matchService.findByMatchId(id));
-        model.addAttribute("matchEvents", matchEventService.findAll());
+        model.addAttribute("matchEvents", matchEventService.findByMatchId(id));
         model.addAttribute("homeTactics", tacticsService.findHomeTeam(id));
         model.addAttribute("awayTactics", tacticsService.findAwayTeam(id));
         return "matchPage";
