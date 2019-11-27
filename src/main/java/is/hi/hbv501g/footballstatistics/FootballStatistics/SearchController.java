@@ -83,6 +83,7 @@ public class SearchController {
     @RequestMapping("/favorites")
     public String favoritesPage(Model model) {
         return "favoritesPage";
+    }
 
 
     @RequestMapping("/search")
