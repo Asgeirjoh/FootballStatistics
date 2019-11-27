@@ -1,10 +1,738 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="grid" lang="is" xmlns:th="https://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Footballstatistics | Team Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> <!--Fæ ekki þennan link til þess að virka á localhost. CSS er í staðinn skrifað í þessu skjali fyrir neðan.-->
 </head>
 <body>
-<p>Team Page</p>
+<header>
+    <div class="container">
+        <div id="branding">
+            <a href="/">Football Statistics</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/competition/11" class="leagueButton">La Liga</a></li>
+                <li><a href="/competition/37" class="leagueButton">FA Women's Super League</a></li>
+                <li><a href="/competition/43" class="leagueButton">FIFA World Cup</a></li>
+                <li><a href="/competition/49" class="leagueButton">NWSL</a></li>
+                <li><a href="/competition/72" class="leagueButton">Women's World Cup</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<background>
+    <div class="indexBackground"></div>
+</background>
+<section id="showcase">
+    <div class="container">
+        <div class="title">
+            <h1>Team Page</h1>
+        </div>
+    </div>
+</section>
+<main>
+
+    <!-- Team Info -->
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${oneTeam}" class="matchList">
+                <h2 th:case="null">No team found!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Team name</th>
+                            <th>Team gender</th>
+                            <th>Team country</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="team : ${oneTeam}">
+                            <td th:text="${team.team_name}" align="center"></td>
+                            <td th:text="${team.team_gender}" align="center"></td>
+                            <td th:text="${team.team_country}" align="center"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Players Info -->
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${playerTactics}" class="matchList">
+                <h2 th:case="null">No players found!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Player name</th>
+                            <th>Position</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tactics : ${playerTactics}">
+                            <td align="center"><a th:href="@{/player/{id}(id=${tactics.player.player_id})}" th:text="${tactics.player.player_name}" class="teamButton"></a></td>
+                            <td th:text="${tactics.position_name}" align="center"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team matches -->
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${matches}" class="matchList">
+                <h2 th:case="null">No matches yet!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Home Score</th>
+                            <th>Home Team</th>
+                            <th>Date</th>
+                            <th>Away Team</th>
+                            <th>Away Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="match : ${matches}">
+                            <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
+                            <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
+                            <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
+                            <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
+                            <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
+                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container above">
+        <nav class="footer">
+            <ul>
+                <li><a href="/competition/11">La Liga</a></li>
+                <li><a href="/competition/37">FA Women's Super League</a></li>
+                <li><a href="/competition/43">FIFA World Cup</a></li>
+                <li><a href="/competition/49">NWSL</a></li>
+                <li><a href="/competition/72">Women's World Cup</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container below">
+        <div class="footerText">
+            <p>© Football Statistics 2019</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
+
+
+
+<style>
+    @charset "UTF-8";
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+      padding: 0;
+      margin: 0; }
+
+    .container {
+      overflow: hidden; }
+
+    body {
+      /* stylelint-disable-line */
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5; }
+
+    /* stylelint-disable-line */
+    h1,
+    h2,
+    h3 {
+      font-family: "Roboto Slab", serif; }
+
+    h1 {
+      /* stylelint-disable-line */
+      font-size: 4.5em; }
+
+    h2 {
+      /* stylelint-disable-line */
+      font-size: 2.25em; }
+
+    h3 {
+      /* stylelint-disable-line */
+      font-size: 1.5em; }
+
+    header .container {
+      /* stylelint-disable-line */
+      position: fixed;
+      z-index: 99;
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.75); }
+
+    header #branding {
+      /* stylelint-disable-line */
+      float: left;
+      font-family: "Roboto Slab", serif;
+      font-size: 1.5em;
+      font-weight: bold; }
+
+    header nav {
+      /* stylelint-disable-line */
+      float: right;
+      padding-right: 30px;
+      margin-top: 5px; }
+
+    header a {
+      /* stylelint-disable-line */
+      padding: 8px 15px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer; }
+
+    header li {
+      /* stylelint-disable-line */
+      display: inline; }
+
+    input {
+      border: 1px solid #c4c4c4;
+      border-radius: 5px;
+      background-color: #fff;
+      padding: 3px 5px;
+      box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+      width: 190px; }
+
+    label {
+     display: block; }
+
+    ul {
+      list-style-type: none; }
+
+    .notBranding {
+      font-size: 0.7em !important;
+      color: #fff; }
+
+    .matchList {
+      margin: auto; }
+
+    .searchBlock {
+      margin: auto; }
+
+    #table1 {border-spacing: 0px 0; }
+
+    #table1 th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: #555;
+      color: white; }
+
+    #table1 tr:hover td {background-color: #ddd !important;}
+
+    #table1 tr, #table1 th {
+      border: 1px solid #ddd;
+      padding: 14px; }
+
+    #table1 tr {
+      font-size: 22px;
+      height: 100px;
+      vertical-align: middle; }
+
+    #table1 td {
+      border-bottom: solid #fff;
+      border-top: solid #fff; }
+
+    #leftTeam {
+      padding-right: 30px; }
+
+    td#rightTeam {
+      padding-left: 30px; }
+
+    [type="date"] {
+      background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+    }
+    [type="date"]::-webkit-inner-spin-button {
+      display: none;
+    }
+    [type="date"]::-webkit-calendar-picker-indicator {
+      opacity: 0;
+    }
+
+    #centerCell {
+      background-color: #f5f5f5; }
+
+    .searchBlock {
+      width: 850px; }
+
+    .searchForm {
+      display: inline-flex; }
+
+    .searchForm div {
+      padding-right: 20px; }
+
+    .searchButton {
+      position: relative; }
+
+    .searchButton input {
+      position: absolute;
+      bottom: 0;
+      color: #fff;
+      background-color: #666;
+      border: 1px solid #666;
+      transition: background-color 500ms ease, color 500ms ease;}
+
+    .searchButton input:hover, .matchButton:hover {
+      background-color: #404040;
+      border: 1px solid #ccc; }
+
+    .leagueButton {
+      color: #fff;
+      background-color: #555;
+      border: 1px solid #555;
+      border-radius: 5px;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    .matchButton {
+      margin: 0px 3px 0px 3px;
+      color: #fff;
+      background-color: #666;
+      border: 1px solid #666;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 0.7em;
+      padding: 20px 10px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      vertical-align: middle;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    #favoriteButton {}
+
+    .teamButton {
+      color: #000;
+      border-radius: 5px;
+      white-space: nowrap;
+      padding: 15px 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    .teamButton:hover {
+      background-color: #666;
+      color: #fff; }
+
+
+    .leagueButton:hover {
+      background-color: #404040;
+      border: 1px solid #ccc; }
+
+    .footer a {
+      color: #bbb; }
+
+    .background {
+      display: flex;
+      width: 100%;
+      height: 500px;
+      flex-direction: column;
+      background: transparent url("bg-subpage.jpg") no-repeat 50% 50%;
+      background-size: cover;
+      opacity: 0.8;
+      justify-content: center; }
+
+    .background .title h1 { /* stylelint-disable-line */
+      margin: 20px;
+      font-size: 3.75em;
+      color: #fff;
+      word-break: break-word; }
+
+    .button {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      text-align: center; }
+
+    /* stylelint-disable-line */
+    button,
+    .button a,
+    .button input {
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+      font-size: 2.25em;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: #595959;
+      border: none;
+      /* stylelint-disable-line */
+      border-radius: 5px;
+      transition: background-color 500ms ease; }
+
+    /* stylelint-disable-line */
+    button:hover,
+    .button a:hover {
+      background-color: #333; }
+
+    main {
+      /* stylelint-disable-line */
+      max-width: 1300px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      overflow: hidden; }
+
+    main section {
+      /* stylelint-disable-line */
+      margin-top: 6em;
+      margin-bottom: 6em; }
+
+    img {
+      /* stylelint-disable-line */
+      width: 100%; }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -10px;
+      margin-bottom: 20px;
+      margin-left: -10px; }
+
+    .col {
+      padding-right: 10px;
+      padding-left: 10px; }
+
+    .col-12 {
+      width: 100%; }
+
+    .col-8 {
+      width: 66.66667%; }
+
+    .col-6 {
+      width: 50%; }
+
+    .col-4 {
+      width: 33.33333%; }
+
+    .col-3 {
+      width: 25%; }
+
+    @media (max-width: 599px) {
+      .col-sm-12 {
+        width: 100%; }
+      .col-sm-6 {
+        width: 50%; }
+      .col-sm-3 {
+        width: 25%; } }
+
+    @media (max-width: 399px) {
+      .col-sm2-12 {
+        width: 100%; }
+      .col-sm2-6 {
+        width: 50%; } }
+
+    footer {
+      /* stylelint-disable-line */
+      color: #e6e6e6;
+      text-align: center;
+      background-color: #333; }
+
+    footer .container {
+      /* stylelint-disable-line */
+      padding-top: 1.25em;
+      padding-bottom: 1.25em; }
+
+    footer .above {
+      /* stylelint-disable-line */
+      display: flex;
+      padding-bottom: 2em;
+      border-bottom: 3px solid #909090;
+      justify-content: center; }
+
+    footer .below {
+      /* stylelint-disable-line */
+      font-size: 0.875em;
+      color: #999; }
+
+    /* Fyrir breytingar undir 600px skjástærð */
+    @media (max-width: 599px) {
+      main {
+        /* stylelint-disable-line */
+        padding-left: 20px;
+        margin-right: 20px; } }
+
+    @media (max-width: 399px) {
+      .col {
+        width: 100%;
+      /* öll column taka 100% width */ }
+      .background {
+        background-position: 0% 50%; }
+      header nav {
+        /* stylelint-disable-line */
+        padding-right: 15px; } }
+
+    .indexBackground {
+      width: 100%;
+      height: 40vh;
+      background: transparent url("bg.jpg") no-repeat fixed 50% 50%;
+      background-size: cover;
+      opacity: 0.85; }
+
+    #search {
+      margin-bottom: 2em; }
+
+    #showcase .container {
+      /* stylelint-disable-line */
+      position: absolute;
+      top: 20%;
+      width: 100%;
+      line-height: 1.3;
+      text-align: center; }
+
+    #showcase h2 {
+      /* stylelint-disable-line */
+      font-weight: normal; }
+
+    #showcase .button {
+      /* stylelint-disable-line */
+      margin-top: 4em; }
+
+    .showcaseButton {
+      padding-right: 0.8em;
+      padding-left: 0.8em; }
+
+    /* Animation fyrir opnunarsíðu */
+    /* stylelint-disable-line */
+    #showcase h2,
+    #showcase .showcaseButton {
+      opacity: 0;
+      animation: fadein 3s;
+      animation-fill-mode: forwards; }
+
+    #showcase h2 {
+      /* stylelint-disable-line */
+      animation-delay: 0.5s; }
+
+    #showcase .showcaseButton {
+      /* stylelint-disable-line */
+      animation-delay: 3s; }
+
+    @keyframes fadein {
+      from {
+        opacity: 0; }
+      to {
+        opacity: 1; } }
+
+    #advertise p {
+      /* stylelint-disable-line */
+      padding-left: 2.35em;
+      font-size: 1.125em; }
+
+    #advertise h3 {
+      /* stylelint-disable-line */
+      padding-left: 1.75em;
+      background-image: url("check.svg");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 1.5em; }
+
+    .checklist {
+      display: flex;
+      flex-direction: column; }
+
+    .check {
+      margin-top: auto;
+      margin-bottom: auto; }
+
+    .box {
+      display: flex;
+      text-align: center;
+      flex-direction: column; }
+
+    .circularImage {
+      width: 80%;
+      border-radius: 50%; }
+
+    .comments__text {
+      display: flex;
+      margin-top: 1em;
+      flex-direction: column;
+      flex: 1;
+      /* Lætur alla 3 textana vera í jafn stórum div */ }
+
+    .comments__quote {
+      margin-top: auto;
+      margin-bottom: 0.5em;
+      font-size: 1.489em;
+      /* (1.5em) */
+      font-style: italic;
+      font-weight: bold; }
+
+    .comments__about {
+      margin-top: auto; }
+
+    .comments__about p:nth-of-type(1) {
+      /* stylelint-disable-line */
+      font-size: 1.125em;
+      font-weight: bold; }
+
+    .comments__about p:nth-of-type(2) {
+      /* stylelint-disable-line */
+      font-size: 0.875em; }
+
+    #buyNow {
+      /* stylelint-disable-line */
+      margin-top: -4em;
+      margin-bottom: 5em;
+      text-align: center; }
+
+    #buyNow .button {
+      /* stylelint-disable-line */
+      margin: 1em; }
+
+    .buyNowButton {
+      /* Breiddin fyrir buyNow takkann. */
+      padding-right: 2em;
+      padding-left: 2em; }
+
+    /* Fyrir breytingar undir 600px skjástærð */
+    @media (max-width: 599px) {
+      main section {
+        /* stylelint-disable-line */
+        margin-top: 12em;
+        margin-bottom: 12em; }
+      .checklist,
+      .check {
+        margin-bottom: 2.5em; }
+      #advertise {
+        /* stylelint-disable-line */
+        margin-bottom: -6em; }
+      .circularImage {
+        width: 100%; }
+      .box {
+        margin-top: 5em;
+        margin-right: auto;
+        margin-left: auto; }
+      #buyNow {
+        /* stylelint-disable-line */
+        margin-top: 9em;
+        margin-bottom: 5em; } }
+
+    /* Fyrir breytingar undir 400px skjástærð */
+    @media (max-width: 399px) {
+      .buyButton {
+        display: none; }
+      .indexBackground {
+        background-position: 0% 0%;
+        background-size: 365%; }
+
+      #showcase {
+        /* stylelint-disable-line */
+        font-size: 0.666em; }
+      #showcase .button {
+        /* stylelint-disable-line */
+        margin-top: 6em; }
+      #showcase .container {
+        /* stylelint-disable-line */
+        top: 30%; }
+      .circularImage {
+        width: 85%; }
+      #buyNow .button {
+        /* stylelint-disable-line */
+        font-size: 0.666em; }
+      .buyNowButton {
+        padding-right: 4em;
+        padding-left: 4em; } }
+
+    .checkout {
+      justify-content: space-around;
+      margin-top: 5em; }
+
+    .input {
+      width: 100%;
+      height: 1.8em;
+      font-size: 1.125em;
+      border: 1px solid #aaa;
+      border-radius: 4px; }
+
+    select {
+      /* stylelint-disable-line */
+      background-color: #f5f5f5; }
+
+    .selector {
+      height: 1.5em; }
+
+    .inlineSelectors {
+      display: flex;
+      justify-content: space-between; }
+
+    .inlineSelectors__selector {
+      width: 45%; }
+
+    .inlineSelectors__selector select {
+      /* stylelint-disable-line */
+      float: right;
+      width: 65%;
+      height: 1.5em;
+      font-size: 1.125em;
+      border-radius: 4px; }
+
+    .orderButton {
+      padding-right: 7em;
+      padding-left: 7em;
+      font-size: 0.444em; }
+
+    /* Nokkrar margin stillingar fyrir main. */
+    .checkout h3 {
+      /* stylelint-disable-line */
+      margin-bottom: 0.75em; }
+
+    .inputType {
+      margin-bottom: 1.5em; }
+
+    .singleRadio {
+      margin-bottom: 1em; }
+
+    .order {
+      margin-bottom: 4em; }
+
+    .blockquote {
+      float: right;
+      width: 50%;
+      padding: 2.5em 2em;
+      margin-left: 5em; }
+
+    @media (max-width: 599px) {
+      .blockquote {
+        width: 100%; } }
+
+    .quote_sentence {
+      padding-bottom: 1em;
+      font-size: 1.5em;
+      font-style: italic;
+      text-indent: -10px; }
+
+    .quote_by {
+      font-size: 0.9em; }
+
+    .wrapped_text {
+      display: inline; }
+
+    .about_text {
+      margin-top: 6em;
+      margin-bottom: 6em; }
+</style>

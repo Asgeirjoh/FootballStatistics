@@ -9,4 +9,5 @@ public interface TacticsService {
     List<Tactics> findByTeam(int team_id);
     List<Tactics> findHomeTeam(int match_id);
     List<Tactics> findAwayTeam(int match_id);
+    List<Tactics> findByPlayerId(int player_id);
 }

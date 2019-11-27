@@ -7,10 +7,8 @@ import java.util.Optional;
 
 public interface PlayerService {
     List<Player> findAll();
-/*
-    List<Player> findByPlayerName(String player_name);
-    Optional<Player> findById(int player_id);
-
-
- */
+    List<Player> findByPlayerId(int player_id);
+    /*
+    List<Player> findByPlayer_Name(String player_name);
+     */
 }

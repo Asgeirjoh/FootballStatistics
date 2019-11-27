@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Footballstatistics | Main Page</title>
+    <title>Footballstatistics | Player Page</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> <!--Fæ ekki þennan link til þess að virka á localhost. CSS er í staðinn skrifað í þessu skjali fyrir neðan.-->
 </head>
@@ -30,80 +30,63 @@
 <section id="showcase">
     <div class="container">
         <div class="title">
-            <h1>Football Statistics</h1>
+            <h1>Player Page</h1>
         </div>
     </div>
 </section>
 <main>
-    <section id="search">
+
+    <section id="matches">
         <div class="container row">
-            <div class="searchBlock">
-                <h3>Search for matches</h3>
-                <div class="search">
-                    <form action="/action_page.php" class="searchForm">
-                        <div>
-                            <label for="startDate">Start Date:</label>
-                            <input type="date" id="startDate">
-                        </div>
-                        <div>
-                            <label for="endDate">End Date:</label>
-                            <input type="date" id="endDate">
-                        </div>
-                        <div>
-                            <label for="textBar">Team or Player:</label>
-                            <input type="text" id="textBar">
-                        </div>
-                        <div class="searchButton">
-                            <input type="submit" value="Search">
-                        </div>
-                    </form>
+            <div th:switch="${playerTactics}" class="matchList">
+                <h2 th:case="null">No players found!</h2>
+                <div th:case="*">
+                    <table id="table2">
+                        <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Team Name</th>
+                            <th>Position</th>
+                            <th>Jersey Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tactics : ${playerTactics}">
+                            <td th:text="${tactics.player.player_name}" align="center" width="180"></td>
+                            <td align="center" width="250"><a th:href="@{/team/{id}(id=${tactics.team.team_id})}" th:text="${tactics.team.team_name}" class="teamButton"></a></td>
+                            <td th:text="${tactics.position_name}" align="center"></td>
+                            <td th:text="${tactics.player.jersey_number}" align="center"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- TODO: Click on teams to view Team page -->
-
     <section id="matches">
         <div class="container row">
             <div th:switch="${matches}" class="matchList">
-                <h2 th:case="null">No matches yet!</h2>
+                <h2 th:case="null">No player matches yet!</h2>
                 <div th:case="*">
                     <table id="table1">
                         <thead>
                         <tr>
-                            <!--
-                            <th>View Home Team</th>
-                            -->
                             <th>Home Score</th>
                             <th>Home Team</th>
                             <th>Date</th>
                             <th>Away Team</th>
                             <th>Away Score</th>
-                            <!--
-                            <th>View Away Team</th>
-                            -->
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="match : ${matches}">
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.home_team.team_name})}">Team</a></td>
-                            -->
                             <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
-                            <td th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"></td>
-                            <!--
-                            <td>
-                            <a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}" />
-                            </td>
-                            -->
+                            <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
-                            <td th:text="${match.away_team.team_name}" align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"></td>
+                            <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
-                            <!--
-                            <td><a th:href="@{/team/{id}(id=${match.away_team.team_name})}">Team</a></td>
-                            -->
+                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a><a th:href="@{/favorites/{id}(id=${username})}" class="matchButton" id="favoriteButton">Favorite</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -121,13 +104,6 @@
                 <li><a href="/competition/43">FIFA World Cup</a></li>
                 <li><a href="/competition/49">NWSL</a></li>
                 <li><a href="/competition/72">Women's World Cup</a></li>
-                <!--
-                <li><a href="@{/competition/${id}(id={11})}">La Liga</a></li>
-                <li><a href="@{/competition/${id}(id={37})}">FA Women's Super League</a></li>
-                <li><a href="@{/competition/${id}(id={43})}">FIFA World Cup</a></li>
-                <li><a href="@{/competition/${id}(id={49})}">NWSL</a></li>
-                <li><a href="@{/competition/${id}(id={72})}">Women's World Cup</a></li>
-                -->
             </ul>
         </nav>
     </div>
@@ -139,8 +115,6 @@
 </footer>
 </body>
 </html>
-
-
 
 <style>
     @charset "UTF-8";
@@ -224,6 +198,10 @@
     ul {
       list-style-type: none; }
 
+    .notBranding {
+      font-size: 0.7em !important;
+      color: #fff; }
+
     .matchList {
       margin: auto; }
 
@@ -232,26 +210,31 @@
 
     #table1 {border-spacing: 0px 0; }
 
-    #table1 th {
+    #table1 th, #table2 th {
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: center;
       background-color: #555;
       color: white; }
 
-    #table1 tr:hover td {background-color: #ddd !important;}
+    #table1 tr:hover td, #table2 tr:hover td {background-color: #ddd !important;}
 
-    #table1 tr, #table1 th {
+    #table1 tr, #table1 th, #table2 tr, #table2 th{
       border: 1px solid #ddd;
       padding: 14px; }
 
     #table1 tr {
       font-size: 22px;
-      line-height: 48px; }
+      height: 100px;
+      vertical-align: middle; }
 
-    #table1 td {
+    #table1 td, #table2 td {
       border-bottom: solid #fff;
       border-top: solid #fff; }
+
+    #table2 tr {
+      font-size: 22px;
+      height: 40px; }
 
     #leftTeam {
       padding-right: 30px; }
@@ -292,7 +275,7 @@
       border: 1px solid #666;
       transition: background-color 500ms ease, color 500ms ease;}
 
-    .searchButton input:hover {
+    .searchButton input:hover, .matchButton:hover {
       background-color: #404040;
       border: 1px solid #ccc; }
 
@@ -302,6 +285,37 @@
       border: 1px solid #555;
       border-radius: 5px;
       transition: background-color 500ms ease, color 500ms ease; }
+
+    .matchButton {
+      margin: 0px 3px 0px 3px;
+      color: #fff;
+      background-color: #666;
+      border: 1px solid #666;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 0.7em;
+      padding: 20px 10px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      vertical-align: middle;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    #favoriteButton {}
+
+    .teamButton {
+      color: #000;
+      border-radius: 5px;
+      white-space: nowrap;
+      padding: 15px 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 500ms ease, color 500ms ease; }
+
+    .teamButton:hover {
+      background-color: #666;
+      color: #fff; }
+
 
     .leagueButton:hover {
       background-color: #404040;
@@ -354,7 +368,7 @@
 
     main {
       /* stylelint-disable-line */
-      max-width: 1200px;
+      max-width: 1300px;
       box-sizing: border-box;
       margin: 0 auto;
       overflow: hidden; }

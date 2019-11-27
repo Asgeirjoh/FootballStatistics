@@ -17,7 +17,7 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
 
     List<Team> findAll();
     @Query(value = "SELECT * FROM team t WHERE t.team_id = ?1", nativeQuery = true)
-    Optional<Team> findByTeamId(int team_id);
+    List<Team> findByTeamId(int team_id);
     @Query(value = "SELECT * FROM team t WHERE t.team_name = ?1", nativeQuery = true)
     List<Team> findByTeamName(String team_name);
      /*

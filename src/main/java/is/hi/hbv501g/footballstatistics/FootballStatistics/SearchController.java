@@ -18,7 +18,9 @@ import javax.validation.Valid;
 
 @Controller
 public class SearchController {
-
+    //Login info
+    private String username = "Username123";
+    private String password;
 
     // Instance Variables
     private CompetitionService competitionService;
@@ -63,14 +65,18 @@ public class SearchController {
     @RequestMapping("/match/{id}")
     public String matchPage(@PathVariable int id, Model model) {
         model.addAttribute("eventMatch", matchService.findByMatchId(id));
-        model.addAttribute("matchEvents", matchEventService.findAll());
+        model.addAttribute("matchEvents", matchEventService.findByMatchId(id));
         model.addAttribute("homeTactics", tacticsService.findHomeTeam(id));
         model.addAttribute("awayTactics", tacticsService.findAwayTeam(id));
         return "matchPage";
     }
 
-    @RequestMapping("/playerPage")
-    public String playerPage() {
+
+    @RequestMapping("/player/{id}")
+    public String playerPage(@PathVariable int id, Model model) {
+        model.addAttribute("matches", matchService.findByPlayerId(id));
+        model.addAttribute("onePlayer", playerService.findByPlayerId(id));
+        model.addAttribute("playerTactics", tacticsService.findByPlayerId(id));
         return "playerPage";
     }
 
@@ -79,10 +85,17 @@ public class SearchController {
     @RequestMapping("/team/{id}")
     public String teamPage(@PathVariable int id, Model model) {
         model.addAttribute("oneTeam", teamService.findByTeamId(id));
+        model.addAttribute("matches", matchService.findByTeamId(id));
+        model.addAttribute("playerTactics", tacticsService.findByTeam(id));
         return "teamPage";
     }
 
-    // til ad fa shit til ad virka
+
+    @RequestMapping("/favorites")
+    public String favoritesPage(Model model) {
+        return "favoritesPage";
+    }
+
     @RequestMapping("/search")
     public String search(){
         return "search";

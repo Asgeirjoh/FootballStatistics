@@ -26,15 +26,15 @@ public class PlayerServiceImplementation implements PlayerService {
         return repository.findAll();
     }
 
+    @Override
+    public List<Player> findByPlayerId(int player_id) {
+        return repository.findByPlayerId(player_id);
+    }
+
     /*
     @Override
     public List<Player> findByPlayer_Name(String player_name) {
         return repository.findByPlayer_Name(player_name);
-    }
-
-    @Override
-    public Optional<Player> findById(int player_id) {
-        return repository.findById(player_id);
     }
      */
 }
