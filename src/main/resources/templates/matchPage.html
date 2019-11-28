@@ -50,6 +50,33 @@
     </div>
 </section>
 <main>
+    <section id="matches">
+        <div class="container row">
+            <div th:switch="${eventMatch}" class="matchList">
+                <h2 th:case="null">No match yet!</h2>
+                <div th:case="*">
+                    <table id="table1">
+                        <thead>
+                        <tr>
+                            <th>Home Team</th>
+                            <th>Home Score</th>
+                            <th>Away Score</th>
+                            <th>Away Team</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="match : ${eventMatch}">
+                            <td align="center" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
+                            <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
+                            <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
+                            <td align="center" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="events">
         <div class="container row">
             <div th:switch="${homeTactics}" class="matchList">

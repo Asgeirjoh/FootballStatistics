@@ -50,7 +50,7 @@ public class MatchServiceImplementation implements MatchService {
     }
 
     @Override
-    public Optional<Match> findByMatchId(int match_id) {
+    public List<Match> findByMatchId(int match_id) {
         return repository.findByMatchId(match_id);
     }
 
