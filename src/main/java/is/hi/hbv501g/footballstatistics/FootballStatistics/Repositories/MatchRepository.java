@@ -24,7 +24,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     // finds recent matches
     @Query(value = "SELECT * FROM match m WHERE m.match_date = (SELECT MAX(p.match_date) FROM match p)", nativeQuery = true)
     List<Match> findRecentMatches();
-    @Query(value = "SELECT * FROM match m WHERE m.competition_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM match m WHERE m.competition_id = ?1 ORDER BY match_date DESC", nativeQuery = true)
     List<Match> findByCompetitionId(int competition_id);
     @Query(value = "SELECT * FROM match m WHERE m.match_id = ?1", nativeQuery = true)
     Optional<Match> findByMatchId(int match_id);
@@ -35,7 +35,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
             , nativeQuery = true)
     List<Match> findByPlayerName(String player_name);
     @Query(value = "SELECT * FROM match m WHERE m.home_team_id = ?1 OR " +
-            "m.away_team_id = ?1", nativeQuery = true)
+            "m.away_team_id = ?1 ORDER BY match_date DESC", nativeQuery = true)
     List<Match> findByTeamId(int team_id);
     @Query(value = "SELECT * FROM match m Where m.match_id = (SELECT match_id FROM Tactics WHERE player_id = ?1)"
             , nativeQuery = true)
