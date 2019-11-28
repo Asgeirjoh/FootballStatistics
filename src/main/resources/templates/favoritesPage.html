@@ -13,21 +13,6 @@
         <div id="branding">
             <a href="/">Football Statistics</a>
         </div>
-        <div id="branding" class="notBranding">
-            <form action="/action_page.php" class="searchForm">
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username">
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password">
-                </div>
-                <div class="searchButton">
-                    <input type="submit" value="Login">
-                </div>
-            </form>
-        </div>
         <nav>
             <ul>
                 <li><a href="/competition/11" class="leagueButton">La Liga</a></li>
@@ -35,6 +20,9 @@
                 <li><a href="/competition/43" class="leagueButton">FIFA World Cup</a></li>
                 <li><a href="/competition/49" class="leagueButton">NWSL</a></li>
                 <li><a href="/competition/72" class="leagueButton">Women's World Cup</a></li>
+                <li><a href="/signUp" class="userButton">Sign Up</a></li>
+                <li><a href="/login" class="userButton">Login</a></li>
+                <li><a href="/favorites" class="userButton">My Account</a></li>
             </ul>
         </nav>
     </div>
@@ -50,36 +38,6 @@
     </div>
 </section>
 <main>
-<section id="matches">
-    <div class="container row">
-        <div th:switch="${competitionMatches}" class="matchList">
-            <h2 th:case="null">No favorite matches yet!</h2>
-            <div th:case="*">
-                <table id="table1">
-                    <thead>
-                    <tr>
-                        <th>Home Score</th>
-                        <th>Home Team</th>
-                        <th>Date</th>
-                        <th>Away Team</th>
-                        <th>Away Score</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="match : ${competitionMatches}">
-                        <td th:text="${match.home_score}" align="center" th:bgcolor="${match.getColor(0)}"></td>
-                        <td align="right" width="350" id="leftTeam" th:bgcolor="${match.getColor(0)}"><a th:href="@{/team/{id}(id=${match.home_team.team_id})}" th:text="${match.home_team.team_name}" class="teamButton"></a></td>
-                        <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
-                        <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
-                        <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
-                        <td width="210" class="matchButtons"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton" id="favoriteButton">Delete</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
 </main>
 <footer>
     <div class="container above">

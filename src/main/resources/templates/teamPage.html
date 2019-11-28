@@ -20,6 +20,9 @@
                 <li><a href="/competition/43" class="leagueButton">FIFA World Cup</a></li>
                 <li><a href="/competition/49" class="leagueButton">NWSL</a></li>
                 <li><a href="/competition/72" class="leagueButton">Women's World Cup</a></li>
+                <li><a href="/signUp" class="userButton">Sign Up</a></li>
+                <li><a href="/login" class="userButton">Login</a></li>
+                <li><a href="/favorites" class="userButton">My Account</a></li>
             </ul>
         </nav>
     </div>
@@ -111,7 +114,7 @@
                             <td th:text="${match.getDateString()}" align="center" width="210" id="centerCell"></td>
                             <td align="left" width="350" id="rightTeam" th:bgcolor="${match.getColor(1)}"><a th:href="@{/team/{id}(id=${match.away_team.team_id})}" th:text="${match.away_team.team_name}" class="teamButton"></a></td>
                             <td th:text="${match.away_score}" align="center" th:bgcolor="${match.getColor(1)}"></td>
-                            <td width="120"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a></td>
+                            <td width="210" class="matchButtons"><a th:href="@{/match/{id}(id=${match.match_id})}" class="matchButton">Open Match</a><a th:href="@{/favorites/{id}(id=${username})}" class="matchButton" id="favoriteButton">Favorite</a></td>
                         </tr>
                         </tbody>
                     </table>
