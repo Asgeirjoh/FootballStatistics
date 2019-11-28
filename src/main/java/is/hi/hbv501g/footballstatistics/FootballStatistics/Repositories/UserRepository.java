@@ -12,9 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User save(User user);
     void delete(User user);
-
     List<User> findAll();
-    @Query(value = "SELECT * FROM user u WHERE u.id = (SELECT id FROM user WHERE username = ?1)",nativeQuery = true)
+    @Query(value = "SELECT * FROM footy_user u WHERE u.username = ?1",nativeQuery = true)
     User findByUsername(String username);
 
 

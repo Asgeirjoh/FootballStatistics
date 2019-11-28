@@ -38,5 +38,15 @@ public class UserServiceImplementation implements UserService {
         return repository.findByUsername(username);
     }
 
+    @Override
+    public User login(User user) {
+        User exists = findByUsername(user.username);
+        if(exists != null){
+            if(exists.password.equals(user.password)){
+                return user;
+            }
+        }
+        return null;
+    }
 
 }

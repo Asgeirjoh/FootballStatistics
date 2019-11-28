@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
 @Controller
 public class SearchController {
-    //Login info
-    private String username = "Username123";
-    private String password;
 
     // Instance Variables
     private CompetitionService competitionService;
@@ -137,25 +135,40 @@ public class SearchController {
     }
 
 
-     /* Fyrir Signup*/
-
-
-        @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
         public String signUpGET(User user){
             return "signUp";
         }
 
-        @RequestMapping(value = "/login")
-        public String login(User user, Model model){
-            return "homePage";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginGET(User user){
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPOST(@Valid User user, BindingResult result, Model model, HttpSession session){
+        if(result.hasErrors()){
+            return "login";
         }
-
-
-
-        @RequestMapping(value = "/makedata")
-        public String makedata(Model model){
-            return "homePage";
+        model.addAttribute("matches",matchService.findAll());
+        User exists = userService.login(user);
+        if(exists != null){
+            session.setAttribute("LoggedInUser", user);
+            return "redirect:/";
         }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
+    public String loggedinGET(HttpSession session, Model model){
+        model.addAttribute("matches",matchService.findAll());
+        User sessionUser = (User) session.getAttribute("LoggedInUser");
+        if(sessionUser  != null){
+            model.addAttribute("loggedinuser", sessionUser);
+            return "loggedInUser";
+        }
+        return "redirect:/";
+    }
 
         @RequestMapping(value = "/signUp", method = RequestMethod.POST)
         public String signUpPOST(@Valid User user, BindingResult result, Model model){
@@ -167,7 +180,7 @@ public class SearchController {
             if(exists == null){
                 userService.save(user);
             }
-            model.addAttribute("Matches", matchService.findAll());
+            model.addAttribute("matches", matchService.findAll());
             return "homePage";
         }
         // til thess ad sja notendur i kerfinu
@@ -177,8 +190,12 @@ public class SearchController {
             return "users";
     }
 
+    /*
+    @RequestMapping(value = "/addFavorites{id}")
+    public String addFavorites(@PathVariable int id, Model model){
 
-
+    }
+     */
 
     }
 
