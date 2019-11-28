@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query(value = "INSERT INTO user.username VALUES = ?1",nativeQuery = true)
+
     User save(User user);
-    @Query(value = "DELETE FROM user m WHERE m.username = ?1",nativeQuery = true)
     void delete(User user);
 
     List<User> findAll();
