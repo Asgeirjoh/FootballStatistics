@@ -51,7 +51,7 @@ The project is then accessible at http://localhost:8080/ in any browser.
   - og setja inn ykkar upplýsingar.
 <br />
 
-##Insert sample data into database
+## Insert sample data into database
 
 1. Keyrið intellij forritið, það setur upp töflurnar.<br />
 2. Opnið Sql shell(psql) og farið í databasinn fsdb.<br />
