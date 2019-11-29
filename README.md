@@ -7,9 +7,9 @@ https://github.com/statsbomb/open-data
 
 | Nafn                     | HÍ Address |
 |--------------------------|------------|
-| Bjarki Páll Hafþórsson   | bph6@hi.is |
 | Ásgeir Andri Guðmundsson | aag2@hi.is |
 | Ásgeir Jóhannes Tómasson | ajt2@hi.is |
+| Bjarki Páll Hafþórsson   | bph6@hi.is |
 | Son Van Nguyen           | svn5@hi.is |
 
 PostgreSQL download page: https://www.postgresql.org/download/
