@@ -49,27 +49,28 @@ The project is then accessible at http://localhost:8080/ in any browser.
   spring.datasource.password=postgrespass
 
   - og setja inn ykkar upplýsingar.
+<br />
 
 ##Insert sample data into database
 
-1. Keyrið intellij forritið, það setur upp töflurnar.
-2. Opnið Sql shell(psql) og farið í databasinn fsdb.
+1. Keyrið intellij forritið, það setur upp töflurnar.<br />
+2. Opnið Sql shell(psql) og farið í databasinn fsdb.<br />
 3. Setjið in skipunina
       -"\set ON_ERROR_STOP on"  (hún stoppar copy ef það koma upp villur).
-   og svo lesa inn 3 sql skjölin sem eru í "database setup" möppunni, í réttri röð, eitt í einu.
+   og svo lesa inn 3 sql skjölin sem eru í "database setup" möppunni, í réttri röð, eitt í einu.<br />
 
-      -"\i C:/data1.sql"  (Þetta les inn sql skjal með copy skipunum, þurfið að skrifa inn rétt path að skjalinu.)
-      -"\i C:/data2.sql"
-      -"\i C:/data3.sql"
+      -"\i C:/data1.sql"  (Þetta les inn sql skjal með copy skipunum, þurfið að skrifa inn rétt path að skjalinu.)<br />
+      -"\i C:/data2.sql"<br />
+      -"\i C:/data3.sql"<br />
 
 Oft þarf að loka og opna psql Shellið til að refresha og sýna rétt gögn. Ástæðan að þetta er skipt upp í 3 skrár er til að forðast heimskar
-villur sem eiga ekki að vera til.
+villur sem eiga ekki að vera til.<br />
 
-Ef þetta virkar ekki þá er bara málið að Droppa öllum tables og byrja upp á nýtt.
-DROP TABLE competition;
-DROP TABLE match;
-DROP TABLE match_event;
-DROP TABLE player;
-DROP TABLE season;
-DROP TABLE tactics;
-DROP TABLE team;
+Ef þetta virkar ekki þá er bara málið að Droppa öllum tables og byrja upp á nýtt.<br />
+DROP TABLE competition; <br />
+DROP TABLE match;<br />
+DROP TABLE match_event;<br />
+DROP TABLE player;<br />
+DROP TABLE season;<br />
+DROP TABLE tactics;<br />
+DROP TABLE team;<br />
