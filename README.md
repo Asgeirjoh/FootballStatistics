@@ -1,5 +1,7 @@
 # FootballStatistics
  
+ The project uses football event data from Statsbomb open data
+https://github.com/statsbomb/open-data
 
 # Team 15 Members
 
@@ -12,6 +14,8 @@
 
 PostgreSQL download page: https://www.postgresql.org/download/
 IntelliJ   download page: https://www.jetbrains.com/idea/
+
+
 
 To run, set up PostgreSQL DB, set up the project in IntelliJ, compile and run the project.
 
