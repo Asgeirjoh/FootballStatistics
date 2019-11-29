@@ -1,25 +1,21 @@
 # FootballStatistics
+ 
 
-## TODO
-- Favourites button, **Son**
-- Favourites page, **ÁsgeirA, Son**
-- user signup and login, **ÁsgeirA**
-- user favourites, **ÁsgeirA**
-- fix matchPage lineups, **Son**
-- matchPage timeline, **Bjarki**
-- playerPage show player info, **Ásgeir**
-- teamPage show players, **Ásgeir**
-- show date and kickoff in match tables
+# Team 15 Members
 
+| Nafn                     | HÍ Address |
+|--------------------------|------------|
+| Bjarki Páll Hafþórsson   | bph6@hi.is |
+| Ásgeir Andri Guðmundsson | aag2@hi.is |
+| Ásgeir Jóhannes Tómasson | ajt2@hi.is |
+| Son Van Nguyen           | svn5@hi.is |
 
+PostgreSQL download page: https://www.postgresql.org/download/
+IntelliJ   download page: https://www.jetbrains.com/idea/
 
+To run, set up PostgreSQL DB, set up the project in IntelliJ, compile and run the project.
 
-
-
-
-
-
-
+The project is then accessible at http://localhost:8080/ in any browser.
 
 
 ## Set up Database
@@ -49,3 +45,27 @@
   spring.datasource.password=postgrespass
 
   - og setja inn ykkar upplýsingar.
+
+##Insert sample data into database
+
+1. Keyrið intellij forritið, það setur upp töflurnar.
+2. Opnið Sql shell(psql) og farið í databasinn fsdb.
+3. Setjið in skipunina
+      -"\set ON_ERROR_STOP on"  (hún stoppar copy ef það koma upp villur).
+   og svo lesa inn 3 sql skjölin sem eru í "database setup" möppunni, í réttri röð, eitt í einu.
+
+      -"\i C:/data1.sql"  (Þetta les inn sql skjal með copy skipunum, þurfið að skrifa inn rétt path að skjalinu.)
+      -"\i C:/data2.sql"
+      -"\i C:/data3.sql"
+
+Oft þarf að loka og opna psql Shellið til að refresha og sýna rétt gögn. Ástæðan að þetta er skipt upp í 3 skrár er til að forðast heimskar
+villur sem eiga ekki að vera til.
+
+Ef þetta virkar ekki þá er bara málið að Droppa öllum tables og byrja upp á nýtt.
+DROP TABLE competition;
+DROP TABLE match;
+DROP TABLE match_event;
+DROP TABLE player;
+DROP TABLE season;
+DROP TABLE tactics;
+DROP TABLE team;
